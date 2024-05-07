@@ -1,4 +1,11 @@
 $primary: teal;
+// off canvas customization
+$offcanvas-horizontal-width: 200px;
+
+.offcanvas {
+  bottom: auto  !important;
+}
+
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"
