@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import { Layout } from "./components/Layout.jsx";
-import { Index } from "./pages/Login.jsx";
+import { Index } from "./pages/Index.jsx";
 import { Venues } from "./pages/Venues.jsx";
 import { Singlevenue } from "./pages/Singlevenue.jsx";
 

@@ -15,7 +15,6 @@ export function Header() {
   return (
     <>
       <header>
-        <Container>
           <Navbar className="bg-white shadow-sm mb-3 d-md-none">
             <Button
               variant="outline-primary"
@@ -38,7 +37,6 @@ export function Header() {
           <Navbar className="d-none d-md-flex">
             <h1>hi</h1>
           </Navbar>
-        </Container>
       </header>
     </>
   );
