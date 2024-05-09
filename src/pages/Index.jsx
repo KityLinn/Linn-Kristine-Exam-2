@@ -27,10 +27,14 @@ export function Index() {
   function loginSubmit(data) {
     console.log(data);
   }
+  function loginFunc () {
+    
+  }
 //register function
   function registerSubmit(data) {
     console.log(data);
   }
+
 
   return (
     <>
