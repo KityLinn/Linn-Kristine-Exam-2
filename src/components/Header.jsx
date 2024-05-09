@@ -34,8 +34,19 @@ export function Header() {
               </Offcanvas.Body>
             </Offcanvas>
           </Navbar>
-          <Navbar className="d-none d-md-flex">
-            <h1>hi</h1>
+          <Navbar className="d-none d-md-flex shadow-sm mb-3">
+          <ul className="nav w-100">
+          <li className="nav-item">
+            <Link to="/venues" className="nav-link px-2 text-muted">
+              venues
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/venues" className="nav-link px-2 text-muted">
+              venues
+            </Link>
+          </li>  
+        </ul>
           </Navbar>
       </header>
     </>
