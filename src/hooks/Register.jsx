@@ -2,9 +2,9 @@ import { auctionUrls } from '../api/Apiutils';
 
 
 
-export function Login(data) {
-    async function loginFunc (userData, loginUrl) {
-        const res = await fetch (loginUrl, {
+export function Register(data) {
+    async function registerFunc (userData, registerUrl) {
+        const res = await fetch (registerUrl, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -13,10 +13,9 @@ export function Login(data) {
         });
         const data = await res.json();
         console.log(data)   
-        localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("user", data.name)   
+ 
 
     }
-    loginFunc(data, auctionUrls.login)
+    registerFunc(data, auctionUrls.register)
   }
     

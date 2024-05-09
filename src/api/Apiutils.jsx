@@ -1,8 +1,8 @@
-const BASE_URL = "https://api.noroff.dev/api/v1/";
+const BASE_URL = "https://v2.api.noroff.dev/";
 
 export const auctionUrls = {
-    login: BASE_URL + " ",
-    register: BASE_URL + "holidaze/auth/register",
+    login: BASE_URL + "auth/login",
+    register: BASE_URL + "auth/register",
     editAvatar: (name) => BASE_URL + `holidaze/profiles/${name}/media`,
     listings: (amount) => BASE_URL + `holidaze/listings?limit=${amount}&_seller=true&_bids=true`,
     listing: (id) => BASE_URL + `holidaze/listings/${id}?_seller=true&_bids=true`,

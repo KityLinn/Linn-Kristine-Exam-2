@@ -2,6 +2,8 @@ import { Navbar, Nav, Container, Button, Offcanvas, Modal, Col, Row, Form } from
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
+import { Login } from "../hooks/Login";
+import { Register } from "../hooks/Register";
 
 
 export function Index() {
@@ -23,17 +25,7 @@ export function Index() {
     handleSubmit: handleSubmit2,
   } = useForm();
   
-//login function
-  function loginSubmit(data) {
-    console.log(data);
-  }
-  function loginFunc () {
-    
-  }
-//register function
-  function registerSubmit(data) {
-    console.log(data);
-  }
+
 
 
   return (
@@ -41,7 +33,7 @@ export function Index() {
      {/*Row with login box, login button and register button */}
       <Row className="d-flex align-items-center justify-content-center mt-5">
         <Form
-          onSubmit={handleSubmit(loginSubmit)}
+          onSubmit={handleSubmit(Login)}
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
@@ -96,7 +88,7 @@ export function Index() {
           </Modal.Header>
           <Modal.Body>
             <Form
-              onSubmit={handleSubmit2(registerSubmit)}
+              onSubmit={handleSubmit2(Register)}
               style={{ maxWidth: "600px" }}
               className="border border-1 border-black p-3 rounded-1"
             >
@@ -141,8 +133,8 @@ export function Index() {
                   {...register2("password", {
                     required: true,
                     minLength: {
-                      value: 3,
-                      message: "Password must be more than 3 characters",
+                      value: 8,
+                      message: "Password must be at least 8 characters",
                     },
                   })}
                 />
