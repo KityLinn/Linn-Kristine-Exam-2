@@ -140,6 +140,14 @@ export function Index() {
               />
               <p>{errors2.password?.message}</p>
             </Form.Group>
+            <Form.Group className="mb-3" controlId="managerChecked">
+              <Form.Label>Register as venueManager</Form.Label>
+              <Form.Check 
+                type="checkbox"
+                {...register2("venueManager")}
+              />
+              <p>{errors2.password?.message}</p>
+            </Form.Group>
             <div className="d-flex justify-content-between">
               <Button variant="primary" type="submit">
                 Register
