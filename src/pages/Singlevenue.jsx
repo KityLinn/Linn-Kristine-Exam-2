@@ -15,6 +15,7 @@ export function Singlevenue() {
     }
     getData();
   }, []);
+  console.log(venue)
 
     return (
      <>

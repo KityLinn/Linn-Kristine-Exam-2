@@ -3,9 +3,6 @@ import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
-
-
-
 export function Header() {
   const [show, setShow] = useState(false);
 
