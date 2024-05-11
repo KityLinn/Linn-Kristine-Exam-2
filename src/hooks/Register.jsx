@@ -3,6 +3,7 @@ import { auctionUrls } from '../api/Apiutils';
 
 
 export function Register(data) {
+    console.log(data)
     async function registerFunc (userData, registerUrl) {
         const res = await fetch (registerUrl, {
             method: "post",

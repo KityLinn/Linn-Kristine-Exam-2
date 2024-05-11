@@ -2,7 +2,9 @@ import { auctionUrls } from '../api/Apiutils';
 
 
 
+
 export function Login(data) {
+
     async function loginFunc (userData, loginUrl) {
         const res = await fetch (loginUrl, {
             method: "post",
@@ -11,10 +13,12 @@ export function Login(data) {
             },
             body: JSON.stringify(userData),
         });
-        const data = await res.json();
-        console.log(data)   
+        const response = await res.json();
+        const data = response.data
+   
         localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("user", data.name)   
+        localStorage.setItem("name", data.name)
+        localStorage.setItem("manager", data.venueManager)
 
     }
     loginFunc(data, auctionUrls.login)

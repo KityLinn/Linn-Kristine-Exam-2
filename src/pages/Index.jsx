@@ -8,10 +8,11 @@ import { Register } from "../hooks/Register";
 
 export function Index() {
 
-// modal states
+// modal state and func
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 // form state
   const {
     register,
@@ -27,7 +28,6 @@ export function Index() {
   
 
 
-
   return (
     <>
       {/*Row with login box, login button and register button */}
@@ -38,27 +38,27 @@ export function Index() {
           className="border border-1 border-black p-3 rounded-1"
         >
           <h1>Login</h1>
-          <Form.Group className="mb-3" controlId="formName">
-            <Form.Label>Username</Form.Label>
+          <Form.Group className="mb-3" controlId="formMail">
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              className={errors.username && "error"}
+              className={errors.Email && "error"}
               type="text"
-              placeholder="Username"
-              {...register("username", {
+              placeholder="Email"
+              {...register("email", {
                 required: true,
                 minLength: {
                   value: 3,
-                  message: "Username must be more than 3 characters",
+                  message: "Email must be more than 3 characters",
                 },
               })}
             />
-            <p>{errors.username?.message}</p>
+            <p>{errors.Email?.message}</p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               className={errors.password && "error"}
-              type="text"
+              type="password"
               placeholder="Password"
               {...register("password", {
                 required: true,
@@ -98,7 +98,7 @@ export function Index() {
                 className={errors2.username && "error"}
                 type="text"
                 placeholder="Username"
-                {...register2("username", {
+                {...register2("name", {
                   required: true,
                   minLength: {
                     value: 3,
@@ -114,7 +114,7 @@ export function Index() {
                 className={errors2.email && "error"}
                 type="text"
                 placeholder="Email"
-                {...register2("Email", {
+                {...register2("email", {
                   required: true,
                   minLength: {
                     value: /\S+@\S+\.\S+/,
