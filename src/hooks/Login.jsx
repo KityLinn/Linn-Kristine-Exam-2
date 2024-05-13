@@ -17,8 +17,9 @@ export function Login(data) {
         const data = response.data
    
         localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("name", data.name)
-        localStorage.setItem("manager", data.venueManager)
+        localStorage.setItem("name", data.name);
+        localStorage.setItem("manager", data.venueManager);
+        window.dispatchEvent(new Event("status"))
 
     }
     loginFunc(data, auctionUrls.login)
