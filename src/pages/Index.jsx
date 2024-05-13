@@ -46,7 +46,7 @@ export function Index() {
               placeholder="Email"
               {...register("email", {
                 required: true,
-                minLength: {
+                pattern: {
                   value: 3,
                   message: "Email must be more than 3 characters",
                 },
@@ -116,13 +116,13 @@ export function Index() {
                 placeholder="Email"
                 {...register2("email", {
                   required: true,
-                  minLength: {
-                    value: /\S+@\S+\.\S+/,
-                    message: "Email must be valid",
+                  pattern: {
+                    value: /\S+@stud.noroff.no/,
+                    message: "Email must end with @stud.noroff.no",
                   },
                 })}
               />
-              <p>{errors2.username?.message}</p>
+              <p>{errors2.email?.message}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Label>Password</Form.Label>
