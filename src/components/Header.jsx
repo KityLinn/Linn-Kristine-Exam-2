@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, Button, Offcanvas } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link,useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -11,6 +11,8 @@ export function Header() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const navigate = useNavigate()
+
   const loggedIn = localStorage.getItem("name");
   const manager = localStorage.getItem("manager");
 
@@ -18,14 +20,18 @@ export function Header() {
     function statusSet() {
       if (manager) {
         setIsmanager(manager);
+      } else {
+        setIsmanager(false);
       }
       if (loggedIn) {
         setisLogged(true);
+      } else {
+        setisLogged(false);
       }
     }
     statusSet();
-    window.addEventListener("status", statusSet);
-  }, []);
+
+  }, [navigate]);
 
   return (
     <>
@@ -62,6 +68,13 @@ export function Header() {
                     </Link>
                   </li>
                 )}
+                {isLogged && (
+                  <li className="nav-item">
+                    <Link to= "/logout" className="nav-link px-2 text-muted">
+                      Logout
+                    </Link>
+                  </li>
+                  )}
               </ul>
             </Offcanvas.Body>
           </Offcanvas>
@@ -88,6 +101,11 @@ export function Header() {
               </li>
             )}
           </ul>
+          {isLogged && (
+                    <Link to= "/logout" className="nav-link px-2 text-muted">
+                      <Button variant="outline-primary" className="bg-white">Logout</Button>
+                    </Link>
+                  )}
         </Navbar>
       </header>
     </>
