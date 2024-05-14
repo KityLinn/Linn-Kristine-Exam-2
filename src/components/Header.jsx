@@ -29,21 +29,21 @@ export function Header() {
 
   return (
     <>
-      <header>
-        <Navbar className="bg-white shadow-sm mb-3 d-md-none">
+      <header className="bg-secondary">
+        <Navbar className="d-md-none">
           <Button
             variant="outline-primary"
-            className=" border-2"
+            className="border-2 bg-white ms-auto me-3"
             onClick={handleShow}
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon fs-6"></span>
           </Button>
 
           <Offcanvas show={show} onHide={handleClose} placement="end">
             <Offcanvas.Header closeButton></Offcanvas.Header>
             <Offcanvas.Body>
               <ul className="nav w-100 d-flex flex-column">
-                <li className="nav-item">
+                <li className="nav-item ">
                   <Link to="/venues" className="nav-link px-2 text-muted">
                     Venues
                   </Link>
@@ -66,23 +66,23 @@ export function Header() {
             </Offcanvas.Body>
           </Offcanvas>
         </Navbar>
-        <Navbar className="d-none d-md-flex shadow-sm mb-3">
+        <Navbar className="d-none d-md-flex">
           <ul className="nav w-100">
             <li className="nav-item">
-              <Link to="/venues" className="nav-link px-2 text-muted">
+              <Link to="/venues" className="nav-link px-2 text-white">
                 Venues
               </Link>
             </li>
             {isLogged && (
               <li className="nav-item">
-                <Link to={"/profile/" + loggedIn} className="nav-link px-2 text-muted">
+                <Link to={"/profile/" + loggedIn} className="nav-link px-2 text-white">
                   Profile
                 </Link>
               </li>
             )}
             {isManager && (
               <li className="nav-item">
-                <Link to="/newvenue" className="nav-link px-2 text-muted">
+                <Link to="/newvenue" className="nav-link px-2 text-white">
                   Create Venue
                 </Link>
               </li>

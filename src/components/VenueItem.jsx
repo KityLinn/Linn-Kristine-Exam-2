@@ -13,14 +13,14 @@ export function VenueItem ({name, id, description, media, }) {
         style={{ objectFit: "cover" }}
       />
       <Card.Body className="d-flex flex-column">
-        <Card.Title className="d-flex mb-4 flex-column">
+        <Card.Title className="d-flex mb-2 flex-column">
           <span className="fs-5 mb-5">{name}</span>
         </Card.Title>
-        <Card.Text>
+        <Card.Text className="truncate-text">
           {description}
         </Card.Text>
-        <Link to= {"/venues/" + id} >
-           <Button className="mt-auto" variant="primary">Book this venue</Button>
+        <Link to= {"/venues/" + id} className="mt-auto"  >
+           <Button variant="primary">Book this venue</Button>
         </Link>
        
       </Card.Body>

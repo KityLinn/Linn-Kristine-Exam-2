@@ -20,18 +20,27 @@ export function Venues() {
   }, []);
   console.log(venues)
     return (
-     <>
-      <Row xs={1} md={2} lg={3} className="g-3">
-        {venues.map((post) => {
-          return (
-            <Col key={post.id}>
-              <VenueItem {...post} />
-            </Col>
-          );
-        })}
-      </Row>
-
-     </>
-   );
+      <>
+        <Form.Group
+          className="d-flex flex-column align-items-center justify-content-center"
+          controlId="searchForm"
+        >
+          <Form.Control
+            className="w-50 border-black border-2 mt-1"
+            type="text"
+            placeholder="Search.."
+          />
+        </Form.Group>
+        <Row xs={1} md={2} lg={3} className="g-3 mt-5">
+          {venues.map((post) => {
+            return (
+              <Col key={post.id}>
+                <VenueItem {...post} />
+              </Col>
+            );
+          })}
+        </Row>
+      </>
+    );
  }
  

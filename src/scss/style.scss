@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-$primary: teal;
+$primary: #274039;
+$secondary:#485D58;
+
+$input-border-width: 2px;
+$input-border-color: black;
+$form-check-input-border: 1px solid black;
+
+$card-border-width: 2px;
+$card-border-color: $secondary;
+
+.truncate-text {
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+}
+
+
 // off canvas customization
 $offcanvas-horizontal-width: 200px;
 
@@ -13,7 +30,7 @@ body  {
   font-family: "Roboto", sans-serif !important;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Lora", serif !important;
 }
 

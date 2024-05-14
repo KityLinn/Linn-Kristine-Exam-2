@@ -82,9 +82,9 @@ export function Index() {
       </Row>
 
       {/*Modal with login box, login button and register button */}
-      <Modal show={show} onHide={handleClose} animation={false} centered>
+      <Modal show={show} onHide={handleClose} animation={true} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Register</Modal.Title>
+          <Modal.Title><h1>Register</h1></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
