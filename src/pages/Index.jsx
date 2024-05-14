@@ -31,7 +31,7 @@ export function Index() {
   return (
     <>
       {/*Row with login box, login button and register button */}
-      <Row className="d-flex align-items-center justify-content-center mt-5">
+      <section className="d-flex align-items-center justify-content-center row mt-5">
         <Form
           onSubmit={handleSubmit(Login)}
           style={{ maxWidth: "600px" }}
@@ -79,7 +79,7 @@ export function Index() {
             </Button>
           </div>
         </Form>
-      </Row>
+      </section>
 
       {/*Modal with login box, login button and register button */}
       <Modal show={show} onHide={handleClose} animation={true} centered>

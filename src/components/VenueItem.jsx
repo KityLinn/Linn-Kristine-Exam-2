@@ -9,8 +9,7 @@ export function VenueItem ({name, id, description, media, }) {
         variant="top"
         src={media[0]?.url}
         alt={media[0]?.alt}
-        height="250px"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", height: "250px"}}
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex mb-2 flex-column">
