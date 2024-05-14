@@ -30,6 +30,7 @@ export function Register() {
             style={{ maxWidth: "600px" }}
             className="border border-1 border-black p-3 rounded-1"
           >
+           <h1>Register</h1>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Username</Form.Label>
               <Form.Control
