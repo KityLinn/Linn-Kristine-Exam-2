@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { auctionUrls } from '../api/Apiutils';
 
 export function Register() {
+  document.title = "Holidaze | Register";
   const {
     register: register2,
     formState: { errors: errors2 },

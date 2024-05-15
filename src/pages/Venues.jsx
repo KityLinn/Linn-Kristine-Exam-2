@@ -4,6 +4,8 @@ import { Navbar, Nav, Container, Button, Offcanvas, Modal, Col, Row, Form } from
 import { VenueItem } from '../components/VenueItem';
 
 export function Venues() {
+  document.title = "Holidaze | Venues";
+  
   const [venues, setVenues] = useState([]);
   const [searchVenues, setSearchVenues] = useState([]);
   const [search, setSearch] = useState("");

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export function Newvenue() { 
+  document.title = "Holidaze | Create new venue";
 
     const {
         register,

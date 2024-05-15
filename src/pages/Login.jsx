@@ -5,6 +5,7 @@ import { auctionUrls } from '../api/Apiutils';
 
 
 export function Login() {
+  document.title = "Holidaze | Login";
   //navigation
   const navigate = useNavigate();
   const goToRegister = () => {

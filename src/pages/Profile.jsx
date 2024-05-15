@@ -5,6 +5,7 @@ import { Row } from "react-bootstrap";
 
 export function Profile() {
     const { name } = useParams();
+    document.title = `Holidaze | ${name} profile`;
     const [profile, setProfile] = useState([]);
     useEffect(() => {
       async function getData() {

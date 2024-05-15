@@ -102,8 +102,8 @@ export function Header() {
             )}
           </ul>
           {isLogged && (
-                    <Link to= "/logout" className="nav-link px-2 text-muted">
-                      <Button variant="outline-primary" className="bg-white">Logout</Button>
+                    <Link to= "/logout" className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2">
+                      Logout
                     </Link>
                   )}
         </Navbar>
