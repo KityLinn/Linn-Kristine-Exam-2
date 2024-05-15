@@ -18,8 +18,8 @@ export function VenueItem ({name, id, description, media, }) {
         <Card.Text className="truncate-text">
           {description}
         </Card.Text>
-        <Link to= {"/venues/" + id} className="mt-auto"  >
-           <Button variant="primary">Book this venue</Button>
+        <Link to= {"/venues/" + id} className="mt-auto btn btn-primary">
+        Book this venue
         </Link>
        
       </Card.Body>

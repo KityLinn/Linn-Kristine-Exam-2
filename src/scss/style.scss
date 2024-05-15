@@ -17,6 +17,17 @@ $card-border-color: $secondary;
   display: -webkit-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  
+}
+
+main {
+  flex-grow: 1;
+}
+
 
 // off canvas customization
 $offcanvas-horizontal-width: 200px;
