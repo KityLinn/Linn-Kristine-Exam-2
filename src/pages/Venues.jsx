@@ -56,7 +56,6 @@ export function Venues() {
     <>
       <section className="d-flex flex-column justify-content-center align-items-center">
         <Form.Group
-          className=""
           controlId="searchForm"
         >
           <Form.Control
