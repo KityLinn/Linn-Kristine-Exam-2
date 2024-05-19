@@ -7,18 +7,27 @@ export function Venues() {
   document.title = "Holidaze | Venues";
 
   const [venues, setVenues] = useState([]);
-  const [searchVenues, setSearchVenues] = useState([]);
+ 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
+  async function getData() {
+    const response = await fetch(auctionUrls.venues(20, page));
+    const json = await response.json();
+    setVenues(json.data);
+
+  }
+  async function getSearch() {
+    const response = await fetch(auctionUrls.searchVenue(search));
+    const json = await response.json();
+    setVenues(json.data);
+  }
+
+
   useEffect(() => {
-    async function getData() {
-      const response = await fetch(auctionUrls.venues(20, page));
-      const json = await response.json();
-      setVenues(json.data);
-      setSearchVenues(json.data);
-    }
     getData();
   }, [page]);
+
   console.log(venues);
 
   function pageUp() {
@@ -36,14 +45,10 @@ export function Venues() {
 
    useEffect(()=> {
     if (search) {
-      async function getSearch() {
-        const response = await fetch(auctionUrls.searchVenue(search));
-        const json = await response.json();
-        setVenues(json.data);
-      }
       getSearch();
-      
-    } 
+    } else {
+      getData()
+    }
   }, [search]);
 
 
