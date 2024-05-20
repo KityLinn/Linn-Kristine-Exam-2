@@ -20,7 +20,7 @@ export function Login() {
   } = useForm();
 
   //login function
-  const sendLogin = async function(userData) {
+  async function sendLogin (userData) {
     const res = await fetch (auctionUrls.login, {
       method: "post",
       headers: {
@@ -35,12 +35,26 @@ export function Login() {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("name", data.name);
       localStorage.setItem("manager", data.venueManager);
+      getKey(data.accessToken)
 
-      navigate("/venues");
+  
     } else {
       //do error stuff
     }    
   }
+
+  async function getKey (token) {
+    const response = await fetch(auctionUrls.API_key, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+      const data = await response.json();
+      console.log(data)
+  }
+  
 
   return(
       <section className="d-flex align-items-center justify-content-center row mt-5">

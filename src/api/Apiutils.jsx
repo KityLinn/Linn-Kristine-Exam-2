@@ -3,6 +3,7 @@ const BASE_URL = "https://v2.api.noroff.dev/";
 export const auctionUrls = {
     login: BASE_URL + "auth/login?_holidaze=true",
     register: BASE_URL + "auth/register",
+    API_key: BASE_URL + "auth/create-api-key",
     venues: (amount, number) => BASE_URL + `holidaze/venues?limit=${amount}&page=${number}&_owner=true&_bookings=true`,
     singleVenue: (id) => BASE_URL + `holidaze/venues/${id}?_owner=true&_bookings=true`,
     createVenue: BASE_URL + `holidaze/venues`,

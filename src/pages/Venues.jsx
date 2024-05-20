@@ -28,7 +28,7 @@ export function Venues() {
     getData();
   }, [page]);
 
-  console.log(venues);
+
 
   function pageUp() {
     setPage(page + 1);

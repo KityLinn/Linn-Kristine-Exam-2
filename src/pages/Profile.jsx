@@ -8,23 +8,22 @@ export function Profile() {
     document.title = `Holidaze | ${name} profile`;
     const [profile, setProfile] = useState([]);
     auctionUrls.singleProfile(name)
-    async function getData() {
+    async function getProfile() {
       const token = localStorage.getItem("token");
-      const response = await fetch(auctionUrls.singleProfile(name),
-      {
+      const response = await fetch(auctionUrls.singleProfile(name), {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
-      const json = await response.json();
-      setProfile(json);
+        const data = await response.json();
+        console.log(data)
     }
-    console.log(profile)
+
 
     useEffect(() => {
-      getData();
+      getProfile();
     }, []);
 
 

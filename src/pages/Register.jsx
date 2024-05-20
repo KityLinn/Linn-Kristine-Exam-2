@@ -11,7 +11,7 @@ export function Register() {
   } = useForm();
 
 
-  const sendRegister = async function(userData) {
+  async function sendRegister (userData) {
     const res = await fetch (auctionUrls.register, {
         method: "post",
         headers: {
