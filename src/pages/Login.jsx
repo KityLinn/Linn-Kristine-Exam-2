@@ -30,30 +30,19 @@ export function Login() {
     });
     const response = await res?.json();
     const data = response?.data;
+    console.log(data)
 
     if (data) {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("name", data.name);
       localStorage.setItem("manager", data.venueManager);
-      getKey(data.accessToken)
 
-  
     } else {
       //do error stuff
     }    
   }
 
-  async function getKey (token) {
-    const response = await fetch(auctionUrls.API_key, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-      const data = await response.json();
-      console.log(data)
-  }
+
   
 
   return(
