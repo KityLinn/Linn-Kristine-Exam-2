@@ -21,7 +21,7 @@ export function Profile() {
   async function modifyUser (editData) {
     console.log(editData)
     const token = localStorage.getItem("token");
-    const response = await fetch(auctionUrls.editProfile(name), {
+    const res = await fetch(auctionUrls.editProfile(name), {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +30,11 @@ export function Profile() {
       },
       body: JSON.stringify(editData),
     });
-      const res = await response.json();
-      console.log(res)
+    const json = await res?.json();
+    const data = json?.data;
+    if (data) {
+      setProfile(data)
+    }
 
   }
     const { name } = useParams();

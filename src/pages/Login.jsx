@@ -28,8 +28,8 @@ export function Login() {
       },
       body: JSON.stringify(userData),
     });
-    const response = await res?.json();
-    const data = response?.data;
+    const json = await res?.json();
+    const data = json?.data;
     console.log(data)
 
     if (data) {
@@ -39,7 +39,8 @@ export function Login() {
       navigate("/venues");
 
     } else {
-      //do error stuff
+      alert(json?.errors[0]?.message);
+
     }    
   }
 
@@ -90,7 +91,7 @@ export function Login() {
             <Button variant="primary" type="submit">
               Login
             </Button>
-            <Button variant="outline-primary" onClick={goToRegister}>
+            <Button variant="outline-primary" className="fw-medium" onClick={goToRegister}>
               Register as new user
             </Button>
           </div>

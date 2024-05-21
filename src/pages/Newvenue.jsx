@@ -17,13 +17,13 @@ export function Newvenue() {
 
 
     const token = localStorage.getItem("token");
-    const creaListing = async (venueUrl, venueData) => {
-
-        const res = await fetch (venueUrl, {
-            method: "post",
+    const creaListing = async (venueData) => {
+        const res = await fetch (auctionUrls.createVenue, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
+                "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2"
             },
             body: JSON.stringify(venueData),
         });
@@ -37,7 +37,7 @@ export function Newvenue() {
         <>
         <section className="d-flex align-items-center justify-content-center row mt-5">
         <Form
-          onSubmit={handleSubmit()}
+          onSubmit={handleSubmit(creaListing)}
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
@@ -49,8 +49,10 @@ export function Newvenue() {
               type="text"
               placeholder="Title"
               {...register("name", {
-                required: true,
-                message: "Title is required",
+                required: {
+                  value:true,
+                  message: "Title is required"
+                }
               })}
             />
             <p>{errors.Title?.message}</p>
@@ -63,11 +65,33 @@ export function Newvenue() {
               rows={4}
               placeholder="Description"
               {...register("description", {
-                required: true,
-                message: "Description is required"
+                required: {
+                  value:true,
+                  message: "description is required"
+                }
               })}
             />
             <p>{errors.description?.message}</p>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formImage">
+            <Form.Label>Image Url</Form.Label>
+            <Form.Control
+              className={errors.image && "error"}
+              type="text"
+              placeholder="Image url"
+              {...register("media.url")}
+            />
+            <p>{errors.image?.message}</p>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formImage">
+            <Form.Label>Image text</Form.Label>
+            <Form.Control
+              className={errors.image && "error"}
+              type="text"
+              placeholder="Image text"
+              {...register("media.alt")}
+            />
+            <p>{errors.image?.message}</p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPrice">
             <Form.Label>Price</Form.Label>
@@ -83,7 +107,7 @@ export function Newvenue() {
             <p>{errors.Price?.message}</p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGuests">
-            <Form.Label>Number of Guests</Form.Label>
+            <Form.Label>Max Number of Guests</Form.Label>
             <Form.Control
               className={errors.Guests && "error"}
               type="number"

@@ -12,15 +12,21 @@ export function Venues() {
   const [page, setPage] = useState(1);
 
   async function getData() {
-    const response = await fetch(auctionUrls.venues(20, page));
-    const json = await response.json();
-    setVenues(json.data);
+    const res = await fetch(auctionUrls.venues(20, page));
+    const json = await res?.json();
+    const data = json?.data;
+    if (data) {
+      setVenues(data)
+    }
 
   }
   async function getSearch() {
-    const response = await fetch(auctionUrls.searchVenue(search));
-    const json = await response.json();
-    setVenues(json.data);
+    const res = await fetch(auctionUrls.searchVenue(search));
+    const json = await res?.json();
+    const data = json?.data;
+    if (data) {
+      setVenues(data)
+    }
   }
 
 

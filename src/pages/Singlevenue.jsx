@@ -7,14 +7,20 @@ import { Row, Carousel, Col } from "react-bootstrap";
 export function Singlevenue() {
   const { id } = useParams();
   const [venue, setVenue] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch(auctionUrls.singleVenue(id));
-      const json = await response.json();
-      setVenue(json.data);
+
+  async function getData() {
+    const res = await fetch(auctionUrls.singleVenue(id));
+    const json = await res?.json();
+    const data = json?.data;
+    if (data) {
+      setVenue(data)
     }
+  }
+
+  useEffect(() => {
     getData();
   }, []);
+  
 console.log(venue)
   return (
     <>
@@ -86,28 +92,3 @@ console.log(venue)
   );
 }
  
-/*
-          <Col>
-            {venue.bookings ? (
-              <>
-                <h3>Bookings:</h3>
-                {venue.bookings.map((b, i) => {
-                  let f = new Date(b.dateFrom);
-                  let from =
-                    f.getDate() + "/" + f.getMonth() + "/" + f.getFullYear();
-                  let t = new Date(b.dateTo);
-                  let to =
-                    t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
-
-                  return (
-                    <p key={i}>
-                      <span>{from}</span> -&gt; <span>{to}</span>
-                    </p>
-                  );
-                })}
-              </>
-            ) : (
-              <></>
-            )}
-          </Col>
-          */
