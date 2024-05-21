@@ -18,7 +18,7 @@ export function Singlevenue() {
 console.log(venue)
   return (
     <>
-      <section className=" d-flex justify-content-center align-items-center mt-5 flex-column gap-5">
+      <section className="d-flex justify-content-center align-items-center mt-5 flex-column gap-5 border border-2 border-black">
         <Carousel>
           {venue.media?.map((i, j) => {
             return (
@@ -34,7 +34,7 @@ console.log(venue)
                   }}
                 />
                 <Carousel.Caption>
-                  <h3>{i.alt}</h3>
+                  <p className="fs-3">{i.alt}</p>
                 </Carousel.Caption>
               </Carousel.Item>
             );
@@ -45,10 +45,10 @@ console.log(venue)
           style={{ width: "600px" }}
         >
           <Col>
-            <h1>{venue.name}</h1>
+            <h1 className="fs-3">{venue.name}</h1>
           </Col>
           <Col className="text-end">
-            <h1>{venue.price} Kr</h1>
+            <p className="fs-3">{venue.price} Kr</p>
           </Col>
         </Row>
         <Row
@@ -80,6 +80,13 @@ console.log(venue)
               <></>
             )}
           </Col>
+        </Row>
+      </section>
+    </>
+  );
+}
+ 
+/*
           <Col>
             {venue.bookings ? (
               <>
@@ -103,9 +110,4 @@ console.log(venue)
               <></>
             )}
           </Col>
-        </Row>
-      </section>
-    </>
-  );
-}
- 
+          */

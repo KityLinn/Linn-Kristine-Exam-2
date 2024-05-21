@@ -36,6 +36,7 @@ export function Login() {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("name", data.name);
       localStorage.setItem("manager", data.venueManager);
+      navigate("/venues");
 
     } else {
       //do error stuff
