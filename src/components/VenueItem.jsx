@@ -12,15 +12,17 @@ export function VenueItem ({name, id, description, media, }) {
         style={{ objectFit: "cover", height: "250px"}}
       />
       <Card.Body className="d-flex flex-column">
-        <Card.Title className="d-flex mb-2 flex-column">
-          <span className="fs-5 mb-5">{name}</span>
+        <Card.Title>
+          <span className="fs-5">{name}</span>
         </Card.Title>
-        <Card.Text className="truncate-text">
-          {description}
+        <Card.Text className="truncate-text mt-3">
+          <span className="fs-6">{description}</span>
         </Card.Text>
-        <Link to= {"/venues/" + id} className="mt-auto btn btn-primary">
-        Book this venue
-        </Link>
+        <div className="d-block mt-auto">        
+          <Link to= {"/venues/" + id} className="mt-auto btn btn-primary">
+            Book this venue
+          </Link>
+        </div>
        
       </Card.Body>
     </Card>

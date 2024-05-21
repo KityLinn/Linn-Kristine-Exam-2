@@ -81,60 +81,68 @@ export function Profile() {
                 height: "400px",
               }}
             />
-            <Button className="mt-5 btn btn-primary object-fit-contain" onClick={handleShow}>Change profile</Button>
+            <div className="d-block mx-auto">
+              <Button
+                className="mt-5 btn btn-primary object-fit-contain"
+                onClick={handleShow}
+              >
+                Change profile
+              </Button>
+            </div>
           </div>
         </section>
         <Modal show={show} onHide={handleClose} animation={true} centered>
-        <Modal.Header closeButton>
-          <Modal.Title><h2>Change profile image</h2></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form
-            onSubmit={handleSubmit(modifyUser)}
-            style={{ maxWidth: "600px" }}
-            className="border border-1 border-black p-3 rounded-1"
-          >
-            <Form.Group className="mb-3" controlId="formImage">
-              <Form.Control
-                className={errors.image && "error"}
-                type="text"
-                placeholder="image"
-                {...register("avatar.url", {
-                  required: {
-                    value:true,
-                    message: "image is required"
-                  }
-                })}
-              />
-              <p>{errors.image?.message}</p>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formImtext">
-
-              <Form.Control
-                className={errors.alt && "error"}
-                type="text"
-                placeholder="Image description"
-                {...register("avatar.alt", {
-                  required: {
-                    value:true,
-                    message: "image text is required"
-                  }
-                })}
-              />
-              <p>{errors.alt?.message}</p>
-            </Form.Group>
-            <div className="d-flex justify-content-between">
-              <Button variant="primary" type="submit">
-                Submit changes
-              </Button>
-              <Button variant="outline-primary" onClick={handleClose}>
-                Close
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <h2>Change profile image</h2>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form
+              onSubmit={handleSubmit(modifyUser)}
+              style={{ maxWidth: "600px" }}
+              className="border border-1 border-black p-3 rounded-1"
+            >
+              <Form.Group className="mb-3" controlId="formImage">
+                <Form.Control
+                  className={errors.image && "error"}
+                  type="text"
+                  placeholder="image"
+                  {...register("avatar.url", {
+                    required: {
+                      value: true,
+                      message: "image is required",
+                    },
+                  })}
+                />
+                <p>{errors.image?.message}</p>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formImtext">
+                <Form.Control
+                  className={errors.alt && "error"}
+                  type="text"
+                  placeholder="Image description"
+                  {...register("avatar.alt", {
+                    required: {
+                      value: true,
+                      message: "image text is required",
+                    },
+                  })}
+                />
+                <p>{errors.alt?.message}</p>
+              </Form.Group>
+              <div className="d-flex justify-content-between">
+                <Button variant="primary" type="submit">
+                  Submit changes
+                </Button>
+                <Button variant="outline-primary" onClick={handleClose}>
+                  Close
+                </Button>
+              </div>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer></Modal.Footer>
+        </Modal>
       </>
     );
  }
