@@ -57,6 +57,9 @@ console.log(venue)
             <p className="fs-3">{venue.price} Kr</p>
           </Col>
         </Row>
+        <Row style={{ width: "600px" }}>
+          <p>{venue.description}</p>
+        </Row>
         <Row
           className="d-flex flex-row justify-content-around"
           style={{ width: "600px" }}

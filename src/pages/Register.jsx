@@ -88,7 +88,6 @@ export function Register() {
                 type="checkbox"
                 {...register2("venueManager")}
               />
-              <p>{errors2.password?.message}</p>
             </Form.Group>
             <div className="d-flex justify-content-between">
               <Button variant="primary" type="submit">

@@ -26,6 +26,7 @@ export function Venues() {
     const data = json?.data;
     if (data) {
       setVenues(data)
+      setPage(1)
     }
   }
 
