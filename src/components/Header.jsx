@@ -101,10 +101,15 @@ export function Header() {
               </li>
             )}
           </ul>
-          {isLogged && (
+          {isLogged ? (
                     <Link to= "/logout" className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2">
                       Logout
                     </Link>
+                  ) : (
+                    <Link to= "/login" className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2">
+                    Login
+                  </Link>
+
                   )}
         </Navbar>
       </header>
