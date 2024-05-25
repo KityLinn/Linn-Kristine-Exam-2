@@ -1,6 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { auctionUrls } from '../api/Apiutils';
+import { Error } from "../components/Error";
 
 export function Register() {
   document.title = "Holidaze | Register";
@@ -37,7 +38,7 @@ export function Register() {
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                className={errors2.username && "error"}
+                className={errors2.name && "error"}
                 type="text"
                 placeholder="Username"
                 {...register2("name", {
@@ -48,7 +49,7 @@ export function Register() {
                   },
                 })}
               />
-              <p>{errors2.username?.message}</p>
+            <Error text={errors2.name?.message} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Email</Form.Label>
@@ -64,7 +65,7 @@ export function Register() {
                   },
                 })}
               />
-              <p>{errors2.email?.message}</p>
+              <Error text={errors2.email?.message} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Label>Password</Form.Label>
@@ -80,7 +81,7 @@ export function Register() {
                   },
                 })}
               />
-              <p>{errors2.password?.message}</p>
+                  <Error text={errors2.password?.message} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="managerChecked">
               <Form.Label>Register as venueManager</Form.Label>

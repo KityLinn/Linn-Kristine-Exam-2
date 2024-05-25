@@ -2,6 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
+import { Error } from "../components/Error";
 
 
 export function Login() {
@@ -36,6 +37,7 @@ export function Login() {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("name", data.name);
       localStorage.setItem("manager", data.venueManager);
+      localStorage.setItem("email", data.email)
       navigate("/venues");
 
     } else {
@@ -58,18 +60,18 @@ export function Login() {
           <Form.Group className="mb-3" controlId="formMail">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              className={errors.Email && "error"}
+              className={errors.email && "error"}
               type="text"
               placeholder="Email"
               {...register("email", {
                 required: true,
-                pattern: {
+                minLength: {
                   value: 3,
                   message: "Email must be more than 3 characters",
                 },
               })}
             />
-            <p>{errors.Email?.message}</p>
+            <Error text={errors.email?.message} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>Password</Form.Label>
@@ -85,7 +87,7 @@ export function Login() {
                 },
               })}
             />
-            <p>{errors.password?.message}</p>
+            <Error text={errors.password?.message} />
           </Form.Group>
           <div className="d-flex justify-content-between">
             <Button variant="primary" type="submit">

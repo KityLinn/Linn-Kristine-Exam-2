@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
 import { auctionUrls } from '../api/Apiutils';
 import { Row, Form, Col, Button} from "react-bootstrap";
 import { useForm } from 'react-hook-form';
-import { useNavigate } from "react-router-dom";
+import { Error } from "../components/Error";
+
 
 
 export function Newvenue() {
@@ -16,7 +16,7 @@ export function Newvenue() {
   } = useForm();
 
   const token = localStorage.getItem("token");
-  async function creaListing (venueData) {
+  async function createListing (venueData) {
     const res = await fetch(auctionUrls.createVenue, {
       method: "POST",
       headers: {
@@ -27,18 +27,21 @@ export function Newvenue() {
       body: JSON.stringify(venueData),
     });
     const data = await res.json();
-    console.log(data);
-  };
+    if (data.errors) {
+      alert(data?.errors[0]?.message);
 
-function testListing (data) {
-  console.log(data)
-}
+    } else {
+      console.log(data)
+      
+
+    }  
+  };
 
   return (
     <>
-      <section className="d-flex align-items-center justify-content-center row mt-5">
+<section className="d-flex align-items-center justify-content-center row mt-5">
         <Form
-          onSubmit={handleSubmit(testListing)}
+          onSubmit={handleSubmit(createListing)}
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
@@ -56,7 +59,7 @@ function testListing (data) {
                 },
               })}
             />
-            <p>{errors.name?.message}</p>
+            <Error text={errors.name?.message} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formDescription">
             <Form.Label>Description</Form.Label>
@@ -72,7 +75,7 @@ function testListing (data) {
                 },
               })}
             />
-            <p>{errors.description?.message}</p>
+            <Error text={errors.description?.message} />
           </Form.Group>
           <Row>
             <Form.Group as={Col} className="mb-3" controlId="formImage">
@@ -80,7 +83,7 @@ function testListing (data) {
               <Form.Control
                 type="text"
                 placeholder="Image url"
-                {...register("media.url")}
+                {...register("media[0].url")}
               />
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="formImagetext">
@@ -88,7 +91,7 @@ function testListing (data) {
               <Form.Control
                 type="text"
                 placeholder="Image text"
-                {...register("media.alt")}
+                {...register("media[0].alt")}
               />
             </Form.Group>
           </Row>
@@ -98,15 +101,16 @@ function testListing (data) {
               <Form.Control
               className={errors.price && "error"}
               type="number"
-              placeholder="Title"
+              placeholder="Price"
               {...register("price", {
+                valueAsNumber: true,
                 required: {
                   value: true,
                   message: "Price is required",
                 },
               })}
             />
-            <p>{errors.price?.message}</p>
+            <Error text={errors.price?.message} />
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="formGuests">
               <Form.Label>Max Number of Guests</Form.Label>
@@ -115,13 +119,14 @@ function testListing (data) {
               type="number"
               placeholder="Guests"
               {...register("maxGuests", {
+                valueAsNumber: true,
                 required: {
                   value: true,
                   message: "Guests is required",
                 },
               })}
             />
-            <p>{errors.maxGuests?.message}</p>
+            <Error text={errors.maxGuests?.message}/>
             </Form.Group>
           </Row>
           <Row>

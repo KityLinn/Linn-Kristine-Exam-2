@@ -6,7 +6,9 @@ import { Booking } from "../components/Booking";
 
 
 export function Singlevenue() {
+  const mail = localStorage.getItem("email");
   const loggedIn = localStorage.getItem("name");
+  const token = localStorage.getItem("token");
   const [isLogged, setisLogged] = useState(false);
   function statusSet() {
 
@@ -35,12 +37,25 @@ export function Singlevenue() {
     }
   }
 
+  async function deleteVenue () {
+    const res = await fetch(auctionUrls.deleteVenue(venue.id), {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  }
+
   useEffect(() => {
     getData();
     statusSet();
   }, []);
 
-  console.log(venue);
+  console.log(venue.owner);
 
   return (
     <>
@@ -119,6 +134,13 @@ export function Singlevenue() {
             <div className="d-inline-block">
               <Button className=" mb-4" onClick={openBookingModal}>
                 Book this venue
+              </Button>
+            </div>
+          )}
+          {mail == venue.owner?.email && (
+            <div className="d-inline-block">
+              <Button className="mb-4" variant="danger" onClick={deleteVenue}>
+                Delete venue
               </Button>
             </div>
           )}
