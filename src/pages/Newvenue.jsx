@@ -16,7 +16,7 @@ export function Newvenue() {
   } = useForm();
 
   const token = localStorage.getItem("token");
-  const creaListing = async (venueData) => {
+  async function creaListing (venueData) {
     const res = await fetch(auctionUrls.createVenue, {
       method: "POST",
       headers: {
@@ -30,11 +30,15 @@ export function Newvenue() {
     console.log(data);
   };
 
+function testListing (data) {
+  console.log(data)
+}
+
   return (
     <>
       <section className="d-flex align-items-center justify-content-center row mt-5">
         <Form
-          onSubmit={handleSubmit(creaListing)}
+          onSubmit={handleSubmit(testListing)}
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
@@ -79,7 +83,7 @@ export function Newvenue() {
                 {...register("media.url")}
               />
             </Form.Group>
-            <Form.Group as={Col} className="mb-3" controlId="formImage">
+            <Form.Group as={Col} className="mb-3" controlId="formImagetext">
               <Form.Label>Image text</Form.Label>
               <Form.Control
                 type="text"
@@ -139,20 +143,28 @@ export function Newvenue() {
             </Form.Group>
           </Row>
           <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formImage">
-              <Form.Label>Image Url</Form.Label>
+            <Form.Group as={Col} className="mb-3" controlId="formAdress">
+              <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Image url"
-                {...register("media.url")}
+                placeholder="Address"
+                {...register("location.address")}
               />
             </Form.Group>
-            <Form.Group as={Col} className="mb-3" controlId="formImage">
-              <Form.Label>Image text</Form.Label>
+            <Form.Group as={Col} className="mb-3" controlId="formCity">
+              <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Image text"
-                {...register("media.alt")}
+                placeholder="City"
+                {...register("location.city")}
+              />
+            </Form.Group>
+            <Form.Group as={Col} className="mb-3" controlId="formCity">
+              <Form.Label>Country</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Country"
+                {...register("location.country")}
               />
             </Form.Group>
           </Row>
