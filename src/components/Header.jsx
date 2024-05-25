@@ -56,7 +56,10 @@ export function Header() {
                 </li>
                 {isLogged && (
                   <li className="nav-item">
-                    <Link to= {"/profile/" + loggedIn} className="nav-link px-2 text-muted">
+                    <Link
+                      to={"/profile/" + loggedIn}
+                      className="nav-link px-2 text-muted"
+                    >
                       Profile
                     </Link>
                   </li>
@@ -70,11 +73,11 @@ export function Header() {
                 )}
                 {isLogged && (
                   <li className="nav-item">
-                    <Link to= "/logout" className="nav-link px-2 text-muted">
+                    <Link to="/logout" className="nav-link px-2 text-muted">
                       Logout
                     </Link>
                   </li>
-                  )}
+                )}
               </ul>
             </Offcanvas.Body>
           </Offcanvas>
@@ -88,7 +91,10 @@ export function Header() {
             </li>
             {isLogged && (
               <li className="nav-item">
-                <Link to={"/profile/" + loggedIn} className="nav-link px-2 text-white">
+                <Link
+                  to={"/profile/" + loggedIn}
+                  className="nav-link px-2 text-white"
+                >
                   Profile
                 </Link>
               </li>
@@ -102,15 +108,20 @@ export function Header() {
             )}
           </ul>
           {isLogged ? (
-                    <Link to= "/logout" className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2">
-                      Logout
-                    </Link>
-                  ) : (
-                    <Link to= "/login" className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2">
-                    Login
-                  </Link>
-
-                  )}
+            <Link
+              to="/logout"
+              className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2"
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="nav-link px-2 text-muted btn btn-outline-primary bg-white p-1 me-2"
+            >
+              Login
+            </Link>
+          )}
         </Navbar>
       </header>
     </>

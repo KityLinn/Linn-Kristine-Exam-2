@@ -1,8 +1,9 @@
-import { Container, Button, Offcanvas, Modal, Col, Row, Form } from "react-bootstrap";
+import { Container, Button, Offcanvas, Modal, Col, Row, Form, Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
 import { useForm } from 'react-hook-form';
+import { VenueItem } from "../components/VenueItem";
 
 
 export function Profile() {
@@ -91,6 +92,69 @@ export function Profile() {
             </div>
           </div>
         </section>
+        {profile.bookings?.length && (
+          <section className="d-flex align-items-center justify-content-center row mt-5">
+            <Row style={{ maxWidth: "600px" }}>
+              <Row>
+                <h2>Bookings</h2>
+              </Row>
+              <Row>
+                {profile.bookings.map((b) => {
+                  return (
+                    <Col key={b.id}>
+                      <Card>
+                        <Card.Header>{b.venue.name}</Card.Header>
+                        <Card.Body>
+                          <p>
+                            From: {new Date(b.dateFrom).toLocaleDateString()}
+                          </p>
+                          <p>To: {new Date(b.dateTo).toLocaleDateString()}</p>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Row>
+          </section>
+        )}
+        {profile.venues?.length > 0 && (
+          <section className="d-flex align-items-center justify-content-center row mt-5">
+            <Row style={{ maxWidth: "600px" }}>
+              <Row>
+                <h2>Venues</h2>
+              </Row>
+              <Row>
+                {profile.venues.map((v) => {
+                  return (
+                    <Col key={v.id}>
+                      <Row>
+                        <VenueItem {...v} />
+                      </Row>
+                      {v.bookings?.length && (
+                        <>
+                          {v.bookings.map((b) => {
+                            <Row>
+                              <Card>
+                                <Row>
+                                  From:{" "}
+                                  {new Date(b.dateFrom).toLocaleDateString()}
+                                </Row>
+                                <Row>
+                                  To: {new Date(b.dateTo).toLocaleDateString()}
+                                </Row>
+                              </Card>
+                            </Row>;
+                          })}
+                        </>
+                      )}
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Row>
+          </section>
+        )}
         <Modal show={show} onHide={handleClose} animation={true} centered>
           <Modal.Header closeButton>
             <Modal.Title>
