@@ -8,6 +8,7 @@ export function Logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("manager");
+    localStorage.removeItem("email");
 
     navigate("/");  
   });
