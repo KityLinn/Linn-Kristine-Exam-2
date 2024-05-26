@@ -9,9 +9,9 @@ export function Singlevenue() {
   const mail = localStorage.getItem("email");
   const loggedIn = localStorage.getItem("name");
   const token = localStorage.getItem("token");
+
   const [isLogged, setisLogged] = useState(false);
   function statusSet() {
-
     if (loggedIn) {
       setisLogged(true);
     } else {
@@ -27,6 +27,7 @@ export function Singlevenue() {
 
   const openBookingModal = () => setShowBooking(true);
   const closeBookingModal = () => setShowBooking(false);
+  document.title = `Holidaze | ${venue.name}`;
 
   async function getData() {
     const res = await fetch(auctionUrls.singleVenue(id));
@@ -36,7 +37,7 @@ export function Singlevenue() {
       setVenue(data);
     }
   }
-
+  console.log(venue)
   async function deleteVenue () {
     const res = await fetch(auctionUrls.deleteVenue(venue.id), {
       method: "DELETE",
@@ -55,7 +56,7 @@ export function Singlevenue() {
     statusSet();
   }, []);
 
-  console.log(venue.owner);
+
 
   return (
     <>
@@ -101,19 +102,15 @@ export function Singlevenue() {
           </Row>
           <Row className="d-flex mt-3">
             <Col>
-              <div>
-                {venue.location ? (
-                  <>
+                {venue.location && (
+                  <div>
                     <h3>Location:</h3>
                     <p>Adress: {venue.location.address}</p>
                     <p>City: {venue.location.city}</p>
                     <p>Country: {venue.location.country}</p>
                     <p>Continet: {venue.location.continent}</p>
-                  </>
-                ) : (
-                  <></>
+                  </div>
                 )}
-              </div>
             </Col>
             <Col className="d-flex justify-content-end">
               <div className=" d-flex flex-column">
@@ -154,6 +151,33 @@ export function Singlevenue() {
           </Modal>
         </Row>
       </section>
+      {mail == venue.owner?.email && (
+        <section className="d-flex mt-5 flex-column px-2">
+          <Row style={{ maxWidth: "800px" }}>
+            <Col>
+              {venue.bookings && (
+                <>
+                  <h3>Bookings:</h3>
+                  {console.log(venue.bookings)}
+                  {venue.bookings.map((b, i) => {
+                    let f = new Date(b.dateFrom);
+                    let from =
+                      f.getDate() + "/" + f.getMonth() + "/" + f.getFullYear();
+                    let t = new Date(b.dateTo);
+                    let to =
+                      t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
+                    return (
+                      <p key={i}>
+                        <span>{b.customer.name}:</span> <span>{from}</span> -&gt; <span>{to}</span>
+                      </p>
+                    );
+                  })}
+                </>
+              )}
+            </Col>
+          </Row>
+        </section>
+      )}
     </>
   );
 }
