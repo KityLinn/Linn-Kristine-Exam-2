@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
-import { Row, Carousel, Col, Button, Modal} from "react-bootstrap";
+import { Row, Carousel, Col, Button, Modal, Card} from "react-bootstrap";
 import { Booking } from "../components/Booking";
 
 
@@ -60,8 +60,11 @@ export function Singlevenue() {
 
   return (
     <>
-      <section className="d-flex justify-content-center align-items-center mt-5 flex-column border border-2 border-black px-2">
-        <Row style={{ maxWidth: "800px" }}>
+      <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
+        <Row
+          style={{ maxWidth: "800px" }}
+          className="border border-2 border-black px-2"
+        >
           <Carousel fade>
             {venue.media?.map((i, j) => {
               return (
@@ -102,15 +105,15 @@ export function Singlevenue() {
           </Row>
           <Row className="d-flex mt-3">
             <Col>
-                {venue.location && (
-                  <div>
-                    <h3>Location:</h3>
-                    <p>Adress: {venue.location.address}</p>
-                    <p>City: {venue.location.city}</p>
-                    <p>Country: {venue.location.country}</p>
-                    <p>Continet: {venue.location.continent}</p>
-                  </div>
-                )}
+              {venue.location && (
+                <div>
+                  <h3>Location:</h3>
+                  <p>Adress: {venue.location.address}</p>
+                  <p>City: {venue.location.city}</p>
+                  <p>Country: {venue.location.country}</p>
+                  <p>Continet: {venue.location.continent}</p>
+                </div>
+              )}
             </Col>
             <Col className="d-flex justify-content-end">
               <div className=" d-flex flex-column">
@@ -152,9 +155,9 @@ export function Singlevenue() {
         </Row>
       </section>
       {mail == venue.owner?.email && (
-        <section className="d-flex mt-5 flex-column px-2">
-          <Row style={{ maxWidth: "800px" }}>
-            <Col>
+        <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
+          <div style={{ maxWidth: "800px" }} className="px-2 vw-100">
+            <Row>
               {venue.bookings && (
                 <>
                   <h3>Bookings:</h3>
@@ -167,15 +170,21 @@ export function Singlevenue() {
                     let to =
                       t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
                     return (
-                      <p key={i}>
-                        <span>{b.customer.name}:</span> <span>{from}</span> -&gt; <span>{to}</span>
-                      </p>
+                      <Col xs="3" key={i}>
+                        <Card>
+                          <Card.Header>{b.customer.name}</Card.Header>
+                          <Card.Body>
+                            <p>From:{from}</p>
+                            <p>To: {to} </p>
+                          </Card.Body>
+                        </Card>
+                      </Col>
                     );
                   })}
                 </>
               )}
-            </Col>
-          </Row>
+            </Row>
+          </div>
         </section>
       )}
     </>
