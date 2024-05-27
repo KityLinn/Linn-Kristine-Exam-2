@@ -19,7 +19,6 @@ export function Singlevenue() {
     }
   }
 
-
   const { id } = useParams();
   const [venue, setVenue] = useState([]);
 
@@ -37,8 +36,8 @@ export function Singlevenue() {
       setVenue(data);
     }
   }
-
-  async function deleteVenue () {
+  console.log(venue);
+  async function deleteVenue() {
     const res = await fetch(auctionUrls.deleteVenue(venue.id), {
       method: "DELETE",
       headers: {
@@ -48,7 +47,6 @@ export function Singlevenue() {
       },
     });
     const data = await res.json();
-
   }
 
   useEffect(() => {
@@ -56,15 +54,10 @@ export function Singlevenue() {
     statusSet();
   }, []);
 
-
-
   return (
     <>
       <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
-        <Row
-          style={{ maxWidth: "800px" }}
-          className="border border-2 border-black px-2"
-        >
+        <Row style={{ maxWidth: "800px" }} className="px-2">
           <Carousel fade>
             {venue.media?.map((i, j) => {
               return (
@@ -148,32 +141,36 @@ export function Singlevenue() {
           </Modal>
         </Row>
       </section>
-      <section className="d-flex justify-content-center align-items-center mt-5">
-        <div style={{ maxWidth: "800px" }} className="w-100">
-          {mail == venue.owner?.email && (
-            <Row>
-              <div className="d-inline-block col col-3">
-                <Button className="mb-4" variant="danger" onClick={deleteVenue}>
-                  Delete venue
-                </Button>
-              </div>
-              <div className="d-inline-block col col-3">
-                <Link
-                  to={"/editvenue/" + venue.id}
-                  className="btn btn-primary p-2 mb-2"
-                >
-                  Edit venue
-                </Link>
-              </div>
-            </Row>
-          )}
-        </div>
+      <section className="d-flex align-items-center justify-content-center flex-column">
+        {mail == venue.owner?.email && (
+          <div
+            style={{ maxWidth: "800px" }}
+            className="w-100 d-flex gap-4 border-top border-2 pt-4"
+          >
+            <div className="d-inline-block">
+              <Button variant="danger" className="p-2" onClick={deleteVenue}>
+                Delete venue
+              </Button>
+            </div>
+            <div className="d-inline-block">
+              <Link
+                to={"/editvenue/" + venue.id}
+                className="btn btn-primary p-2"
+              >
+                Edit venue
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
       {mail == venue.owner?.email && (
-        <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
-          <div style={{ maxWidth: "800px" }} className="w-100">
+        <section className="d-flex justify-content-center align-items-center mt-4 flex-column">
+          <div
+            style={{ maxWidth: "800px" }}
+            className="w-100 border-top border-2 pt-5"
+          >
             <Row>
-              {venue.bookings?.length > 0  && (
+              {venue.bookings?.length > 0 && (
                 <>
                   <h3>Bookings:</h3>
                   {venue.bookings.map((b, i) => {
@@ -184,11 +181,11 @@ export function Singlevenue() {
                     let to =
                       t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
                     return (
-                      <Col xs="3" key={i}>
+                      <Col xs="6" sm="4" key={i}>
                         <Card>
                           <Card.Header>{b.customer.name}</Card.Header>
                           <Card.Body>
-                            <p>From:{from}</p>
+                            <p>From: {from}</p>
                             <p>To: {to} </p>
                           </Card.Body>
                         </Card>
