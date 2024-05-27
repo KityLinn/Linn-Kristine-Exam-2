@@ -1,9 +1,10 @@
-import { Container, Button, Offcanvas, Modal, Col, Row, Form, Card } from "react-bootstrap";
+import { Button,  Modal, Col, Row, Form, } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
 import { useForm } from 'react-hook-form';
 import { ProfileVenue } from "../components/Profilevenue";
+import { Profilebookings } from "../components/Profilebookings";
 
 
 export function Profile() {
@@ -98,13 +99,7 @@ export function Profile() {
               {profile.bookings.map((b) => {
                 return (
                   <Col xs="6" sm="4" key={b.id}>
-                    <Card border="primary" >
-                      <Card.Header>{b.venue.name}</Card.Header>
-                      <Card.Body>
-                        <p>From: {new Date(b.dateFrom).toLocaleDateString()}</p>
-                        <p>To: {new Date(b.dateTo).toLocaleDateString()}</p>
-                      </Card.Body>
-                    </Card>
+                    <Profilebookings {...b}/>
                   </Col>
                 );
               })}
