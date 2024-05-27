@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import {auctionUrls} from "../api/Apiutils";
+import { Error } from "./Error";
 
 export function Booking({venue, onDone}) {
 
 
   const [excludeDates, setExcludeDates] = useState([]);
-  const { register, handleSubmit, control, setValue } = useForm();
+  const { register, handleSubmit, control, setValue, formState: { errors }, } = useForm();
 
   const [dateFrom, setDateFrom] = useState(new Date());
   const [dateTo, setDateTo] = useState(new Date());
@@ -45,30 +46,44 @@ export function Booking({venue, onDone}) {
   return (
     <section>
       <Form onSubmit={handleSubmit(doBooking)}>
-      <Form.Group className="mb-3" controlId="guests">                                       
-        <Form.Label>Guests:</Form.Label>
-        <input {...register("guests", { required: true, value: 2 })}></input>
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>From:</Form.Label>
-        <Controller
-            name="dateFrom"
-            control={control}
-            defaultValue={new Date()}
-            render={() => (
-              <DatePicker
-                selected={dateFrom}
-                placeholderText="Select start date"
-                onChange={handleDates}
-                startDate={dateFrom}
-                endDate={dateTo}
-                excludeDates={excludeDates}
-                selectsRange
-                inline
+        <Form.Group className="mb-3" controlId="guests">                                       
+          <Form.Label>Guests (max: {venue.maxGuests}): </Form.Label>
+          <Form.Control
+                className={errors.guests && "error"}
+                type="number"
+                placeholder="Number of guests"
+                {...register("guests", {
+                  required: {
+                    value: (v)=> v>0,
+                    message: "Must be 1 or more",
+                  },
+                  value: 1, 
+                  valueAsNumber: true,
+                })}
               />
-            )}
-          />
+              <Error text={errors.guests?.message} />
         </Form.Group>
+        <Row className="mb-2">
+          <Form.Group className="d-flex justify-content-center">
+            <Controller
+                name="dateFrom"
+                control={control}
+                defaultValue={new Date()}
+                render={() => (
+                  <DatePicker
+                    selected={dateFrom}
+                    placeholderText="Select start date"
+                    onChange={handleDates}
+                    startDate={dateFrom}
+                    endDate={dateTo}
+                    excludeDates={excludeDates}
+                    selectsRange
+                    inline
+                  />
+                )}
+              />
+          </Form.Group>
+        </Row>
         <input {...register("venueId", {required: true, value: venue.id})} type="hidden"/>
         <Row>
           <Button type="submit">Book</Button>
