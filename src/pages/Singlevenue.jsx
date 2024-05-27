@@ -57,7 +57,7 @@ export function Singlevenue() {
   return (
     <>
       <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
-        <Row style={{ maxWidth: "800px" }} className="px-2">
+        <Row style={{ maxWidth: "800px" }} >
           <Carousel fade>
             {venue.media?.map((i, j) => {
               return (
@@ -125,7 +125,7 @@ export function Singlevenue() {
           </Row>
           {isLogged && (
             <div className="d-inline-block">
-              <Button className=" mb-4" onClick={openBookingModal}>
+              <Button className="mb-3" onClick={openBookingModal}>
                 Book this venue
               </Button>
             </div>

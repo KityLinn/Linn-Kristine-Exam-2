@@ -4,7 +4,7 @@ import {  Link } from "react-router-dom";
 export function VenueItem({ name, id, description, media }) {
   return (
     <>
-      <Card border="primary" className="h-100 d-flex flex-column">
+      <Card className="h-100 d-flex flex-column venue-card-bg">
         <Card.Img
           variant="top"
           src={media[0]?.url}

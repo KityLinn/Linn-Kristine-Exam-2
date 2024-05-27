@@ -2,13 +2,18 @@
 
 $primary: #274039;
 $secondary:#485D58;
+$card-bg-color: #2740392c;
 
 $input-border-width: 2px;
 $input-border-color: black;
 $form-check-input-border: 1px solid black;
 
-$card-border-width: 2px;
-$card-border-color: $secondary;
+
+
+
+.venue-card-bg {
+  background-color:$card-bg-color !important;
+}
 
 .truncate-text {
   overflow: hidden;

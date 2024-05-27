@@ -98,7 +98,7 @@ export function Profile() {
               {profile.bookings.map((b) => {
                 return (
                   <Col xs="6" sm="4" key={b.id}>
-                    <Card>
+                    <Card border="primary" >
                       <Card.Header>{b.venue.name}</Card.Header>
                       <Card.Body>
                         <p>From: {new Date(b.dateFrom).toLocaleDateString()}</p>
