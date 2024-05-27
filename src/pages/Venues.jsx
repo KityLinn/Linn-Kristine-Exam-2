@@ -1,7 +1,8 @@
 import { auctionUrls } from '../api/Apiutils';
 import { useEffect, useState } from "react";
-import { Navbar, Nav, Container, Button, Offcanvas, Modal, Col, Row, Form } from "react-bootstrap";
+import {  Button, Col, Row, Form } from "react-bootstrap";
 import { VenueItem } from '../components/VenueItem';
+
 
 export function Venues() {
   document.title = "Holidaze | Venues";

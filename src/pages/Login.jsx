@@ -7,6 +7,8 @@ import { Error } from "../components/Error";
 
 export function Login() {
   document.title = "Holidaze | Login";
+
+
   //navigation
   const navigate = useNavigate();
   const goToRegister = () => {
