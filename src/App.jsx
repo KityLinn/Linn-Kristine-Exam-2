@@ -8,6 +8,7 @@ import { Newvenue } from "./pages/Newvenue.jsx";
 import { Login } from "./pages/Login.jsx"
 import { Logout } from "./pages/Logout.jsx"
 import { Register } from "./pages/Register.jsx"
+import { EditVenue } from "./pages/EditVenue.jsx"
 
 
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/venues/:id" element={<Singlevenue />} />
             <Route path="/profile/:name" element={<Profile />} />
             <Route path="/newvenue" element={<Newvenue />} />
+            <Route path="/editvenue/:id" element={<EditVenue />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />

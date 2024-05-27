@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
 import { Row, Carousel, Col, Button, Modal, Card} from "react-bootstrap";
 import { Booking } from "../components/Booking";
@@ -37,7 +37,7 @@ export function Singlevenue() {
       setVenue(data);
     }
   }
-  console.log(venue)
+
   async function deleteVenue () {
     const res = await fetch(auctionUrls.deleteVenue(venue.id), {
       method: "DELETE",
@@ -48,7 +48,7 @@ export function Singlevenue() {
       },
     });
     const data = await res.json();
-    console.log(data);
+
   }
 
   useEffect(() => {
@@ -137,13 +137,7 @@ export function Singlevenue() {
               </Button>
             </div>
           )}
-          {mail == venue.owner?.email && (
-            <div className="d-inline-block">
-              <Button className="mb-4" variant="danger" onClick={deleteVenue}>
-                Delete venue
-              </Button>
-            </div>
-          )}
+
           <Modal show={showBooking} onHide={closeBookingModal}>
             <Modal.Header closeButton>
               <h2>Book venue</h2>
@@ -154,14 +148,34 @@ export function Singlevenue() {
           </Modal>
         </Row>
       </section>
+      <section className="d-flex justify-content-center align-items-center mt-5">
+        <div style={{ maxWidth: "800px" }} className="w-100">
+          {mail == venue.owner?.email && (
+            <Row>
+              <div className="d-inline-block col col-3">
+                <Button className="mb-4" variant="danger" onClick={deleteVenue}>
+                  Delete venue
+                </Button>
+              </div>
+              <div className="d-inline-block col col-3">
+                <Link
+                  to={"/editvenue/" + venue.id}
+                  className="btn btn-primary p-2 mb-2"
+                >
+                  Edit venue
+                </Link>
+              </div>
+            </Row>
+          )}
+        </div>
+      </section>
       {mail == venue.owner?.email && (
         <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
-          <div style={{ maxWidth: "800px" }} className="px-2 vw-100">
+          <div style={{ maxWidth: "800px" }} className="w-100">
             <Row>
               {venue.bookings && (
                 <>
                   <h3>Bookings:</h3>
-                  {console.log(venue.bookings)}
                   {venue.bookings.map((b, i) => {
                     let f = new Date(b.dateFrom);
                     let from =

@@ -90,14 +90,14 @@ export function Profile() {
       </section>
       {profile.bookings?.length && (
         <section className="d-flex align-items-center justify-content-center row mt-5">
-          <Row style={{ maxWidth: "600px" }}>
+          <Row style={{ maxWidth: "800px" }}>
             <Row>
-              <h2>Bookings</h2>
+              <h2>Your Bookings</h2>
             </Row>
-            <Row>
+            <Row className="g-3">
               {profile.bookings.map((b) => {
                 return (
-                  <Col key={b.id}>
+                  <Col xs="6" sm="4" key={b.id}>
                     <Card>
                       <Card.Header>{b.venue.name}</Card.Header>
                       <Card.Body>
@@ -114,14 +114,14 @@ export function Profile() {
       )}
       {profile.venues?.length > 0 && (
         <section className="d-flex align-items-center justify-content-center row mt-5">
-          <Row style={{ maxWidth: "600px" }}>
+          <Row style={{ maxWidth: "800px" }}>
             <Row>
-              <h2>Venues</h2>
+              <h2>Your Venues</h2>
             </Row>
               <Row>
                 {profile.venues.map((v) => {
                   return (
-                    <Col key={v.id}>
+                    <Col xs="12" md="6" key={v.id}>
                       <ProfileVenue {...v} />
                     </Col>
                   );

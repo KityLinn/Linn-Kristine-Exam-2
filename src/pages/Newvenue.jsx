@@ -3,17 +3,39 @@ import { auctionUrls } from '../api/Apiutils';
 import { Row, Form, Col, Button} from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Error } from "../components/Error";
+import { useEffect } from 'react';
 
 
 
-export function Newvenue() {
+export function Newvenue({editVenue}) {
   document.title = "Holidaze | Create new venue";
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
+
+  useEffect(()=>{
+    if(typeof editVenue === "object") {
+      document.title = "Holidaze | Edit venue";
+
+      setValue("name", editVenue.name);
+      setValue("description", editVenue.description);
+      if (editVenue.media) {
+        setValue("media", [editVenue.media[0]]);
+      }
+      setValue("price", editVenue.price);
+      setValue("maxGuests", editVenue.maxGuests);
+      if (editVenue.meta) {
+        setValue("meta", editVenue.meta);
+      }
+      if (editVenue.location) {
+        setValue("location", editVenue.location)
+      }
+    }
+  }, [editVenue]);
 
   const token = localStorage.getItem("token");
   async function createListing (venueData) {
@@ -31,17 +53,43 @@ export function Newvenue() {
       alert(data?.errors[0]?.message);
 
     } else {
-      console.log(data)
+      alert("Venue has been created");
       
 
     }  
   };
 
+  async function updateVenue(venueData) {
+    const res = await fetch(auctionUrls.updateVenue(editVenue.id), {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
+      },
+      body: JSON.stringify(venueData),
+    });
+    const data = await res.json();
+    if (data.errors) {
+      alert(data?.errors[0]?.message);
+    } else {
+      alert("Venue has been updated");
+    } 
+  }
+
+  function sendForm(venueData) {
+    if (editVenue) {
+      updateVenue(venueData);
+    } else {
+      createListing(venueData);
+    }
+  }
+
   return (
     <>
-<section className="d-flex align-items-center justify-content-center row mt-5">
+      <section className="d-flex align-items-center justify-content-center row mt-5">
         <Form
-          onSubmit={handleSubmit(createListing)}
+          onSubmit={handleSubmit(sendForm)}
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
@@ -99,34 +147,34 @@ export function Newvenue() {
             <Form.Group as={Col} className="mb-3" controlId="formPrice">
               <Form.Label>Price</Form.Label>
               <Form.Control
-              className={errors.price && "error"}
-              type="number"
-              placeholder="Price"
-              {...register("price", {
-                valueAsNumber: true,
-                required: {
-                  value: true,
-                  message: "Price is required",
-                },
-              })}
-            />
-            <Error text={errors.price?.message} />
+                className={errors.price && "error"}
+                type="number"
+                placeholder="Price"
+                {...register("price", {
+                  valueAsNumber: true,
+                  required: {
+                    value: true,
+                    message: "Price is required",
+                  },
+                })}
+              />
+              <Error text={errors.price?.message} />
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="formGuests">
               <Form.Label>Max Number of Guests</Form.Label>
               <Form.Control
-              className={errors.maxGuests && "error"}
-              type="number"
-              placeholder="Guests"
-              {...register("maxGuests", {
-                valueAsNumber: true,
-                required: {
-                  value: true,
-                  message: "Guests is required",
-                },
-              })}
-            />
-            <Error text={errors.maxGuests?.message}/>
+                className={errors.maxGuests && "error"}
+                type="number"
+                placeholder="Guests"
+                {...register("maxGuests", {
+                  valueAsNumber: true,
+                  required: {
+                    value: true,
+                    message: "Guests is required",
+                  },
+                })}
+              />
+              <Error text={errors.maxGuests?.message} />
             </Form.Group>
           </Row>
           <Row>
