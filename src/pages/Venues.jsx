@@ -7,7 +7,7 @@ export function Venues() {
   document.title = "Holidaze | Venues";
 
   const [venues, setVenues] = useState([]);
- 
+
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
@@ -16,26 +16,22 @@ export function Venues() {
     const json = await res?.json();
     const data = json?.data;
     if (data) {
-      setVenues(data)
+      setVenues(data);
     }
-
   }
   async function getSearch() {
     const res = await fetch(auctionUrls.searchVenue(search));
     const json = await res?.json();
     const data = json?.data;
     if (data) {
-      setVenues(data)
-      setPage(1)
+      setVenues(data);
+      setPage(1);
     }
   }
-
 
   useEffect(() => {
     getData();
   }, [page]);
-
-
 
   function pageUp() {
     setPage(page + 1);
@@ -46,36 +42,35 @@ export function Venues() {
     document.documentElement.scrollTop = 0;
   }
 
-  function searchFunc (e) {
-    return setSearch(e.target.value.toLowerCase())
-   }
+  function searchFunc(e) {
+    return setSearch(e.target.value.toLowerCase());
+  }
 
-   useEffect(()=> {
+  useEffect(() => {
     if (search) {
       getSearch();
     } else {
-      getData()
+      getData();
     }
   }, [search]);
 
-
   return (
     <>
-      <section className="d-flex flex-column justify-content-center align-items-center">
-        <Form.Group
-          controlId="searchForm"
-        >
-          <Form.Control
-            className="mt-1"
-            type="text"
-            placeholder="Search.."
-            onChange={searchFunc}
-            style={{
-              maxWidth: "400px",
-              width: "100vw"
-            }}
-          />
-        </Form.Group>
+      <section className="d-flex flex-column justify-content-center">
+        <div className="d-block align-self-center">
+          <Form.Group controlId="searchForm">
+            <Form.Control
+              className="mt-1"
+              type="text"
+              placeholder="Search.."
+              onChange={searchFunc}
+              style={{
+                maxWidth: "400px",
+                width: "100vw",
+              }}
+            />
+          </Form.Group>
+        </div>
         <Row xs={1} md={2} lg={3} className="g-3 mt-5">
           {venues.map((post) => {
             return (
@@ -85,7 +80,11 @@ export function Venues() {
             );
           })}
         </Row>
-        <Button onClick={pageUp} className='mt-5'>Show more</Button>
+        <div className="d-block align-self-center">
+          <Button onClick={pageUp} className="mt-5">
+            Show more
+          </Button>
+        </div>
       </section>
     </>
   );

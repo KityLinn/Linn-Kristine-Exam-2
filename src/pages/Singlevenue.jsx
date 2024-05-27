@@ -173,7 +173,7 @@ export function Singlevenue() {
         <section className="d-flex justify-content-center align-items-center mt-5 flex-column">
           <div style={{ maxWidth: "800px" }} className="w-100">
             <Row>
-              {venue.bookings && (
+              {venue.bookings?.length > 0  && (
                 <>
                   <h3>Bookings:</h3>
                   {venue.bookings.map((b, i) => {
