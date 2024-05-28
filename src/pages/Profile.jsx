@@ -57,7 +57,8 @@ export function Profile() {
         toast.warn(error.message);
       });
     } else {
-      toast.success("User modified!");      
+      toast.success(`User modified!
+      refresh the page for changes to occur`);      
     } 
   }
 
@@ -70,7 +71,8 @@ export function Profile() {
         "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
       },
     });
-    toast.success("Booking cancelled!"); 
+    toast.success(`Booking cancelled!
+    refresh the page for changes to occur`); 
   }
 
 

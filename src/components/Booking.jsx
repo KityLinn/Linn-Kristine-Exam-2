@@ -29,7 +29,6 @@ export function Booking({venue, onDone}) {
 
   useEffect(() => {
     setExcludeDates(getDatesFromBookings(venue.bookings));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [venue])
 
   async function doBooking (booking) {
