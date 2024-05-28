@@ -3,12 +3,16 @@ import { useParams, Link } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
 import { Row, Carousel, Col, Button, Modal, Card} from "react-bootstrap";
 import { Booking } from "../components/Booking";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 export function Singlevenue() {
   const mail = localStorage.getItem("email");
   const loggedIn = localStorage.getItem("name");
   const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
 
   const [isLogged, setisLogged] = useState(false);
   function statusSet() {
@@ -46,7 +50,8 @@ export function Singlevenue() {
         "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
       },
     });
-    const data = await res.json();
+    toast.success("Venue deleted!");
+    navigate("/venues");
   }
 
   useEffect(() => {
