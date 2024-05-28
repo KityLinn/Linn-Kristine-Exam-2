@@ -2,6 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { auctionUrls } from '../api/Apiutils';
 import { Error } from "../components/Error";
+import { toast } from "react-toastify";
 
 export function Register() {
   document.title = "Holidaze | Register";
@@ -21,9 +22,13 @@ export function Register() {
         body: JSON.stringify(userData),
     });
     const data = await res.json();
-    if(!data) {
-      alert(data?.errors[0]?.message);
-    }  
+    if(data?.errors) {
+      data.errors?.forEach((error)=>{
+        toast.warn(error.message);
+      });
+    } else {
+      toast.success("User registered successfully!");      
+    } 
   }
 
   return (

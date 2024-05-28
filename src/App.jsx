@@ -9,6 +9,8 @@ import { Login } from "./pages/Login.jsx"
 import { Logout } from "./pages/Logout.jsx"
 import { Register } from "./pages/Register.jsx"
 import { EditVenue } from "./pages/EditVenue.jsx"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -31,6 +33,7 @@ function App() {
           </Routes>
         </main>
       </Layout>
+      <ToastContainer />
     </>
   );
 }

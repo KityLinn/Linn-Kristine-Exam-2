@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import {auctionUrls} from "../api/Apiutils";
 import { Error } from "./Error";
+import { toast } from "react-toastify";
 
 export function Booking({venue, onDone}) {
 
@@ -34,12 +35,13 @@ export function Booking({venue, onDone}) {
   async function doBooking (booking) {
     let response = await sendBooking(booking);
     if (response?.data?.id) {
-      //success
-      alert("Booking has been created");
+
+      toast.success("Booking has been created");
       onDone();
     } else {
-      //error
-      alert(response?.errors[0]?.message);
+      response?.errors.forEach((error)=>{
+        toast.warn(error.message);
+      })
     }
   }
 

@@ -5,10 +5,15 @@ import { auctionUrls } from '../api/Apiutils';
 import { useForm } from 'react-hook-form';
 import { ProfileVenue } from "../components/Profilevenue";
 import { Profilebookings } from "../components/Profilebookings";
+import { toast } from "react-toastify";
 
 
 export function Profile() {
-  // modal state and func
+  const token = localStorage.getItem("token");
+  const { name } = useParams();
+  document.title = `Holidaze | ${name} profile`;
+  const [profile, setProfile] = useState([]);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,8 +25,6 @@ export function Profile() {
   } = useForm();
 
   async function modifyUser(editData) {
-    console.log(editData);
-    const token = localStorage.getItem("token");
     const res = await fetch(auctionUrls.editProfile(name), {
       method: "PUT",
       headers: {
@@ -33,16 +36,18 @@ export function Profile() {
     });
     const json = await res?.json();
     const data = json?.data;
-    if (data) {
-      setProfile(data);
-    }
+    if (!data) {
+      json.errors?.forEach((error)=>{
+        toast.warn(error.message);
+      });
+    } else {
+      toast.success("User modified!");      
+    } 
   }
-  const { name } = useParams();
-  document.title = `Holidaze | ${name} profile`;
-  const [profile, setProfile] = useState([]);
-  auctionUrls.singleProfile(name);
+
+
+
   async function getProfile() {
-    const token = localStorage.getItem("token");
     const response = await fetch(auctionUrls.singleProfile(name), {
       method: "GET",
       headers: {

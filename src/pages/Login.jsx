@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { auctionUrls } from '../api/Apiutils';
 import { Error } from "../components/Error";
+import { toast } from "react-toastify";
 
 
 export function Login() {
@@ -34,17 +35,17 @@ export function Login() {
     const json = await res?.json();
     const data = json?.data;
 
-    if (data) {
+    if (!data) {
+      json?.errors.forEach((error)=>{
+        toast.warn(error.message);
+      })
+    } else {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("name", data.name);
       localStorage.setItem("manager", data.venueManager);
       localStorage.setItem("email", data.email)
       navigate("/venues");
-
-    } else {
-      alert(json?.errors[0]?.message);
-
-    }    
+    }   
   }
 
 

@@ -4,6 +4,7 @@ import { Row, Form, Col, Button} from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Error } from "../components/Error";
 import { useEffect } from 'react';
+import { toast } from "react-toastify";
 
 
 
@@ -17,8 +18,8 @@ export function Newvenue({editVenue}) {
     setValue,
   } = useForm();
 
-  useEffect(()=>{
-    if(typeof editVenue === "object") {
+  useEffect(() => {
+    if (typeof editVenue === "object") {
       document.title = "Holidaze | Edit venue";
 
       setValue("name", editVenue.name);
@@ -32,13 +33,13 @@ export function Newvenue({editVenue}) {
         setValue("meta", editVenue.meta);
       }
       if (editVenue.location) {
-        setValue("location", editVenue.location)
+        setValue("location", editVenue.location);
       }
     }
   }, [editVenue]);
 
   const token = localStorage.getItem("token");
-  async function createListing (venueData) {
+  async function createListing(venueData) {
     const res = await fetch(auctionUrls.createVenue, {
       method: "POST",
       headers: {
@@ -50,14 +51,13 @@ export function Newvenue({editVenue}) {
     });
     const data = await res.json();
     if (data.errors) {
-      alert(data?.errors[0]?.message);
-
+      data.errors.forEach((error) => {
+        toast.warn(error.message);
+      });
     } else {
-      alert("Venue has been created");
-      
-
-    }  
-  };
+      toast.success("Venue has been created");
+    }
+  }
 
   async function updateVenue(venueData) {
     const res = await fetch(auctionUrls.updateVenue(editVenue.id), {
@@ -74,7 +74,7 @@ export function Newvenue({editVenue}) {
       alert(data?.errors[0]?.message);
     } else {
       alert("Venue has been updated");
-    } 
+    }
   }
 
   function sendForm(venueData) {
