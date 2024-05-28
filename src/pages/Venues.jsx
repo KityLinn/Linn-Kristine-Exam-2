@@ -14,7 +14,7 @@ export function Venues() {
   const [page, setPage] = useState(1);
 
   async function getData() {
-    const res = await fetch(auctionUrls.venues(20, page));
+    const res = await fetch(auctionUrls.venues(18, page));
     const json = await res?.json();
     const data = json?.data;
     if (data) {
