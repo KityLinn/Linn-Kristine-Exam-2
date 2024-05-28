@@ -10,7 +10,7 @@ export function Profilebookings({ venue, dateFrom, dateTo, id, deleteFunc }) {
           <p>To: {new Date(dateTo).toLocaleDateString()}</p>
           <div className="d-block mt-auto">
             <Button variant="danger" onClick={() => { deleteFunc(id)}}>
-              Cancel venue
+              Cancel booking
             </Button>
           </div>
         </Card.Body>
