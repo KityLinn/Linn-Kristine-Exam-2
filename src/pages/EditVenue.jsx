@@ -6,8 +6,7 @@ import { Newvenue } from "./Newvenue";
 export function EditVenue() {
   const [venue, setVenue] = useState([]);
   const { id } = useParams();
-  document.title = "Holidaze | Edit your venue";
-  document.getElementsByTagName('meta')["description"].content = "Edit your Holidaze venue";
+
 
   async function getData() {
     const res = await fetch(auctionUrls.singleVenue(id));

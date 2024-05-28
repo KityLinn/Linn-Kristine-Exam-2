@@ -25,7 +25,8 @@ export function Newvenue({editVenue}) {
 
   useEffect(() => {
     if (typeof editVenue === "object") {
-      document.title = "Holidaze | Edit venue";
+      document.title = "Holidaze | Edit your venue";
+      document.getElementsByTagName('meta')["description"].content = "Edit your Holidaze venue";
 
       setValue("name", editVenue.name);
       setValue("description", editVenue.description);
@@ -114,7 +115,7 @@ export function Newvenue({editVenue}) {
           style={{ maxWidth: "600px" }}
           className="border border-1 border-black p-3 rounded-1"
         >
-          <h1>Create a new venue</h1>
+          {editVenue ? <h1>Update your venue</h1> : <h1>Create a new venue</h1>}
           <Form.Group className="mb-3" controlId="formTitle">
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -146,40 +147,47 @@ export function Newvenue({editVenue}) {
             />
             <Error text={errors.description?.message} />
           </Form.Group>
-          { Array.from(Array(numberOfImages)).map((o,i) => (
+          {Array.from(Array(numberOfImages)).map((o, i) => (
             <Row key={i}>
-              <Form.Group as={Col} className="mb-3" controlId={"formImage"+i}>
-                <Form.Label>Image Url {i+1}</Form.Label>
+              <Form.Group as={Col} className="mb-3" controlId={"formImage" + i}>
+                <Form.Label>Image Url {i + 1}</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Image url"
-                  {...register("media["+i+"].url")}
+                  {...register("media[" + i + "].url")}
                 />
               </Form.Group>
-              <Form.Group as={Col} className="mb-3" controlId={"formImageAlt"+i}>
-                <Form.Label>Image text {i+1}</Form.Label>
+              <Form.Group
+                as={Col}
+                className="mb-3"
+                controlId={"formImageAlt" + i}
+              >
+                <Form.Label>Image text {i + 1}</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Image text"
-                  {...register("media["+i+"].alt")}
+                  {...register("media[" + i + "].alt")}
                 />
               </Form.Group>
             </Row>
-            )
-          )}
+          ))}
           <Row>
-            <Col>    
-            {(numberOfImages < MAX_IMAGE_LIMIT) &&
-              <Button variant='secondary' onClick={addImageFields}>Add image</Button>
-            }
+            <Col>
+              {numberOfImages < MAX_IMAGE_LIMIT && (
+                <Button variant="secondary" onClick={addImageFields}>
+                  Add image
+                </Button>
+              )}
             </Col>
             <Col>
-              {(numberOfImages > 1) &&
-                <Button variant='secondary' onClick={removeImageFields} >Remove last image</Button>
-              }
+              {numberOfImages > 1 && (
+                <Button variant="secondary" onClick={removeImageFields}>
+                  Remove last image
+                </Button>
+              )}
             </Col>
           </Row>
-          <Row className='pt-4'>
+          <Row className="pt-4">
             <Form.Group as={Col} className="mb-3" controlId="formPrice">
               <Form.Label>Price</Form.Label>
               <Form.Control
@@ -257,9 +265,15 @@ export function Newvenue({editVenue}) {
               />
             </Form.Group>
           </Row>
-          <Button variant="primary" type="submit">
-            Create venue
-          </Button>
+          {editVenue ? (
+            <Button variant="primary" type="submit">
+              Update venue
+            </Button>
+          ) : (
+            <Button variant="primary" type="submit">
+              Create venue
+            </Button>
+          )}
         </Form>
       </section>
     </>
