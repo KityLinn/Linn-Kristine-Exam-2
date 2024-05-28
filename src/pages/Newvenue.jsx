@@ -3,14 +3,18 @@ import { auctionUrls } from '../api/Apiutils';
 import { Row, Form, Col, Button} from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Error } from "../components/Error";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
 
 
 
 export function Newvenue({editVenue}) {
   document.title = "Holidaze | Create new venue";
+  
+  const token = localStorage.getItem("token");
 
+  const [numberOfImages, setNumberOfImages] = useState(1);
+  const MAX_IMAGE_LIMIT = 3;
   const {
     register,
     handleSubmit,
@@ -25,7 +29,9 @@ export function Newvenue({editVenue}) {
       setValue("name", editVenue.name);
       setValue("description", editVenue.description);
       if (editVenue.media) {
-        setValue("media", [editVenue.media[0]]);
+        editVenue.media.forEach((m)=>{
+          setValue("media", [editVenue.media[0]]);
+        })
       }
       setValue("price", editVenue.price);
       setValue("maxGuests", editVenue.maxGuests);
@@ -38,7 +44,6 @@ export function Newvenue({editVenue}) {
     }
   }, [editVenue]);
 
-  const token = localStorage.getItem("token");
   async function createListing(venueData) {
     const res = await fetch(auctionUrls.createVenue, {
       method: "POST",
@@ -78,10 +83,25 @@ export function Newvenue({editVenue}) {
   }
 
   function sendForm(venueData) {
+    //remove empty fields
+    venueData.media = venueData.media.slice(0, numberOfImages)
+
     if (editVenue) {
       updateVenue(venueData);
     } else {
       createListing(venueData);
+    }
+  }
+
+  function addImageFields() {
+    if (numberOfImages < MAX_IMAGE_LIMIT) {
+      setNumberOfImages(numberOfImages+1);
+    }
+  }
+
+  function removeImageFields() {
+    if(numberOfImages>1) {
+      setNumberOfImages(numberOfImages-1);
     }
   }
 
@@ -125,25 +145,40 @@ export function Newvenue({editVenue}) {
             />
             <Error text={errors.description?.message} />
           </Form.Group>
+          { Array.from(Array(numberOfImages)).map((o,i) => (
+            <Row key={i}>
+              <Form.Group as={Col} className="mb-3" controlId={"formImage"+i}>
+                <Form.Label>Image Url {i+1}</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Image url"
+                  {...register("media["+i+"].url")}
+                />
+              </Form.Group>
+              <Form.Group as={Col} className="mb-3" controlId={"formImageAlt"+i}>
+                <Form.Label>Image text {i+1}</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Image text"
+                  {...register("media["+i+"].alt")}
+                />
+              </Form.Group>
+            </Row>
+            )
+          )}
           <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formImage">
-              <Form.Label>Image Url</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Image url"
-                {...register("media[0].url")}
-              />
-            </Form.Group>
-            <Form.Group as={Col} className="mb-3" controlId="formImagetext">
-              <Form.Label>Image text</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Image text"
-                {...register("media[0].alt")}
-              />
-            </Form.Group>
+            <Col>    
+            {(numberOfImages < MAX_IMAGE_LIMIT) &&
+              <Button variant='secondary' onClick={addImageFields}>Add image</Button>
+            }
+            </Col>
+            <Col>
+              {(numberOfImages > 1) &&
+                <Button variant='secondary' onClick={removeImageFields} >Remove last image</Button>
+              }
+            </Col>
           </Row>
-          <Row>
+          <Row className='pt-4'>
             <Form.Group as={Col} className="mb-3" controlId="formPrice">
               <Form.Label>Price</Form.Label>
               <Form.Control
