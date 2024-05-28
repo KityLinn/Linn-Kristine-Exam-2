@@ -71,10 +71,16 @@ export function Header() {
                     </Link>
                   </li>
                 )}
-                {isLogged && (
+                {isLogged ? (
                   <li className="nav-item">
                     <Link to="/logout" className="nav-link px-2 text-muted">
                       Logout
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link px-2 text-muted">
+                      Login
                     </Link>
                   </li>
                 )}
