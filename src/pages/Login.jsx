@@ -68,9 +68,9 @@ export function Login() {
               placeholder="Email"
               {...register("email", {
                 required: true,
-                minLength: {
-                  value: 3,
-                  message: "Email must be more than 3 characters",
+                pattern: {
+                  value: /\S+@stud.noroff.no/,
+                  message: "Email must end with @stud.noroff.no",
                 },
               })}
             />
@@ -83,10 +83,9 @@ export function Login() {
               type="password"
               placeholder="Password"
               {...register("password", {
-                required: true,
-                minLength: {
-                  value: 3,
-                  message: "Password must be more than 3 characters",
+                required: {
+                  value: true,
+                  message: "Password is required",
                 },
               })}
             />
