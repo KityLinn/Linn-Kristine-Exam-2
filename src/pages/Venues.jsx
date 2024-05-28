@@ -83,9 +83,11 @@ export function Venues() {
           })}
         </Row>
         <div className="d-block align-self-center">
-          <Button onClick={pageUp} className="mt-5">
-            Show more
-          </Button>
+          {!search && (
+            <Button onClick={pageUp} className="mt-5">
+              Show more
+            </Button>
+          )}
         </div>
       </section>
     </>
