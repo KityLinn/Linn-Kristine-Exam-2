@@ -36,7 +36,7 @@ export function Singlevenue() {
       setVenue(data);
     }
   }
-  console.log(venue);
+
   async function deleteVenue() {
     const res = await fetch(auctionUrls.deleteVenue(venue.id), {
       method: "DELETE",
@@ -182,7 +182,7 @@ export function Singlevenue() {
                       t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
                     return (
                       <Col xs="6" sm="4" key={i}>
-                        <Card>
+                        <Card border="primary">
                           <Card.Header>{b.customer.name}</Card.Header>
                           <Card.Body>
                             <p>From: {from}</p>

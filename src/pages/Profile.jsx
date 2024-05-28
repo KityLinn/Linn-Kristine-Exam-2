@@ -24,6 +24,21 @@ export function Profile() {
     formState: { errors },
   } = useForm();
 
+  async function getProfile() {
+    const response = await fetch(auctionUrls.singleProfile(name), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
+      },
+    });
+    const res = await response.json();
+    const data = res.data;
+    setProfile(data);
+    console.log(res)
+  }
+
   async function modifyUser(editData) {
     const res = await fetch(auctionUrls.editProfile(name), {
       method: "PUT",
@@ -45,21 +60,19 @@ export function Profile() {
     } 
   }
 
-
-
-  async function getProfile() {
-    const response = await fetch(auctionUrls.singleProfile(name), {
-      method: "GET",
+  async function deleteBooking (id) {
+    const res = await fetch(auctionUrls.deleteBooking(id), {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": "46dbf285-76f9-4d79-985d-91ee829f49a2",
       },
     });
-    const res = await response.json();
-    const data = res.data;
-    setProfile(data);
+    toast.success("Booking cancelled!"); 
   }
+
+
 
   useEffect(() => {
     getProfile();
@@ -93,7 +106,7 @@ export function Profile() {
           </div>
         </div>
       </section>
-      {profile.bookings?.length && (
+      {profile.bookings?.length > 0 && (
         <section className="d-flex align-items-center justify-content-center row mt-5">
           <Row style={{ maxWidth: "800px" }}>
             <Row>
@@ -103,7 +116,7 @@ export function Profile() {
               {profile.bookings.map((b) => {
                 return (
                   <Col xs="6" sm="4" key={b.id}>
-                    <Profilebookings {...b}/>
+                    <Profilebookings {...b} deleteFunc={deleteBooking}/>
                   </Col>
                 );
               })}
