@@ -18,8 +18,8 @@ export function Header() {
 
   useEffect(() => {
     function statusSet() {
-      if (manager) {
-        setIsmanager(manager);
+      if (manager==="true") {
+        setIsmanager(true);
       } else {
         setIsmanager(false);
       }
