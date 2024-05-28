@@ -74,8 +74,8 @@ export function Singlevenue() {
                 <Carousel.Item key={j}>
                   <img
                     className="d-block"
-                    src={i.url}
-                    alt={i.alt}
+                    src={i?.url}
+                    alt={i?.alt ? i.alt : venue.name}
                     style={{
                       objectFit: "cover",
                       width: "100%",

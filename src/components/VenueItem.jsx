@@ -8,7 +8,7 @@ export function VenueItem({ name, id, description, media }) {
         <Card.Img
           variant="top"
           src={media[0]?.url}
-          alt={media[0]?.alt}
+          alt={media[0]?.alt ? media[0].alt : name}
           style={{ objectFit: "cover", height: "250px" }}
         />
         <Card.Body className="d-flex flex-column">

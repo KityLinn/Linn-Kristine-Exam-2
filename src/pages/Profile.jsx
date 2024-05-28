@@ -38,7 +38,6 @@ export function Profile() {
     const res = await response.json();
     const data = res.data;
     setProfile(data);
-    console.log(res)
   }
 
   async function modifyUser(editData) {
@@ -91,7 +90,7 @@ export function Profile() {
           <img
             className="d-block w-100"
             src={profile.avatar?.url}
-            alt={profile.avatar?.alt}
+           alt={profile.avatar?.alt ? profile.avatar.alt : profile.name}
             style={{
               objectFit: "cover",
               maxWidth: "600px",
