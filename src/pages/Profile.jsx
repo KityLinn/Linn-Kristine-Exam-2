@@ -112,10 +112,10 @@ export function Profile() {
             <Row>
               <h2>Your Bookings</h2>
             </Row>
-            <Row className="g-3">
+            <Row xs={2} md={3} lg={4} className="g-3 ">
               {profile.bookings.map((b) => {
                 return (
-                  <Col xs="6" sm="4" key={b.id}>
+                  <Col  key={b.id}>
                     <Profilebookings {...b} deleteFunc={deleteBooking}/>
                   </Col>
                 );
@@ -130,10 +130,10 @@ export function Profile() {
             <Row>
               <h2>Your Venues</h2>
             </Row>
-              <Row>
+              <Row xs={1} md={2} className="g-3">
                 {profile.venues.map((v) => {
                   return (
-                    <Col xs="12" md="6" key={v.id}>
+                    <Col key={v.id}>
                       <ProfileVenue {...v} />
                     </Col>
                   );
