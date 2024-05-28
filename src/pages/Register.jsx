@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export function Register() {
   document.title = "Holidaze | Register";
+  document.getElementsByTagName('meta')["description"].content = "Register to Holidaze";
   const {
     register: register2,
     formState: { errors: errors2 },

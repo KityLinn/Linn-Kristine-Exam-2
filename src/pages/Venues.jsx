@@ -6,6 +6,7 @@ import { VenueItem } from '../components/VenueItem';
 
 export function Venues() {
   document.title = "Holidaze | Venues";
+  document.getElementsByTagName('meta')["description"].content = "The larges collection of venues ever assembled!";
 
   const [venues, setVenues] = useState([]);
 

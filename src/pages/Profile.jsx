@@ -14,6 +14,8 @@ export function Profile() {
   document.title = `Holidaze | ${name} profile`;
   const [profile, setProfile] = useState([]);
 
+  document.getElementsByTagName('meta')["description"].content = `${name}s Holidaze profile`;
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

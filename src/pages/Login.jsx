@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 export function Login() {
   document.title = "Holidaze | Login";
+  document.getElementsByTagName('meta')["description"].content = "Login to Holidaze";
 
 
   //navigation

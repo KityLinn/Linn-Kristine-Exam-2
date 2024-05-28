@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 
 
 export function Newvenue({editVenue}) {
-  document.title = "Holidaze | Create new venue";
+  document.title = "Holidaze | Create a new venue";
+  document.getElementsByTagName('meta')["description"].content = "Create a new venue for your Holidaze profile";
   
   const token = localStorage.getItem("token");
 

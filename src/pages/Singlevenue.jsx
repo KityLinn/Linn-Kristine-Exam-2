@@ -12,6 +12,7 @@ export function Singlevenue() {
   const loggedIn = localStorage.getItem("name");
   const token = localStorage.getItem("token");
 
+
   const navigate = useNavigate();
 
   const [isLogged, setisLogged] = useState(false);
@@ -26,11 +27,15 @@ export function Singlevenue() {
   const { id } = useParams();
   const [venue, setVenue] = useState([]);
 
+  
+  document.title = `Holidaze | ${venue.name}`;
+  document.getElementsByTagName('meta')["description"].content = `${venue.description}`;
+
   const [showBooking, setShowBooking] = useState(false);
 
   const openBookingModal = () => setShowBooking(true);
   const closeBookingModal = () => setShowBooking(false);
-  document.title = `Holidaze | ${venue.name}`;
+
 
   async function getData() {
     const res = await fetch(auctionUrls.singleVenue(id));
