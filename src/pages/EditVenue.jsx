@@ -13,7 +13,6 @@ export function EditVenue() {
     const data = json?.data;
     if (data) {
       setVenue(data);
-      console.log(data)
     }
   }
   useEffect(() => {

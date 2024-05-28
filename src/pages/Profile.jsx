@@ -54,7 +54,6 @@ export function Profile() {
     const res = await response.json();
     const data = res.data;
     setProfile(data);
-    console.log(data);
   }
 
   useEffect(() => {

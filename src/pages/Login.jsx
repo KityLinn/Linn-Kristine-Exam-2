@@ -33,7 +33,6 @@ export function Login() {
     });
     const json = await res?.json();
     const data = json?.data;
-    console.log(data)
 
     if (data) {
       localStorage.setItem("token", data.accessToken);
