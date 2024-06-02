@@ -11,6 +11,7 @@ It contains:
 - Single venue page
 - New venue page
 - Edit venue page
+- profile page
 
 ## Description
 
@@ -32,15 +33,15 @@ npm run build
 
 ## dependencies
 
--boostrap: 5.3.3
--react: 18.2.0
--react-boostrap: 2.10.2
--react-datepicker: 6.9.0
--react-dom: 18.2.0
--react-hook-form: 7.51.4
--react-router-dom: 6.23.0
--react-toastify: 10.0.5
--sass: 1.76.0
+- boostrap: 5.3.3
+- react: 18.2.0
+- react-boostrap: 2.10.2
+- react-datepicker: 6.9.0
+- react-dom: 18.2.0
+- react-hook-form: 7.51.4
+- react-router-dom: 6.23.0
+- react-toastify: 10.0.5
+- sass: 1.76.0
 
 
 
