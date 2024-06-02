@@ -28,8 +28,13 @@ You can clone the repo from here:
 ```bash
 git clone https://github.com/KityLinn/Linn-Kristine-Exam-2
 ```
+```sh
 npm i
+```
+```sh
 npm run build
+```
+
 
 ## dependencies
 
