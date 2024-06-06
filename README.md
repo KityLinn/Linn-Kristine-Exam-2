@@ -1,5 +1,5 @@
 # Holidaze
-In this project I was taked with creating an online booking site using a provided API. It allows users to view a list of venues as well as individual venues, search through venues, create a new venue and edit one. It is a primarily react based application using a series of dependencies listed below. Boostrap, scss
+In this project I was tasked with creating an online booking site using a provided API. It allows users to view a list of venues as well as individual venues, search through venues, create a new venue and edit one. It is a primarily react based application using a series of dependencies listed below. Boostrap, scss
 
 
 
@@ -15,7 +15,7 @@ It contains:
 
 ## Description
 
-The booking site is aimed at a general audience of adults, it has a professional looking and simple design allowing for easy navigation.
+The booking site is aimed at a general audience of adults, it has a professional looking and simple design allowing for easy navigation. It lets the user register an account through the API, register as either a venue manager or not, then login and place fictional bookings as well as create fictional venues.
 
 
 
